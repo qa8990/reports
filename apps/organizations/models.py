@@ -20,14 +20,13 @@ class Companies(db.Model):
     status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=False)
 
     def __init__(self, **kwargs):
-        
         for property, value in kwargs.items():
             # depending on whether value is an iterable or not, we must
             # unpack it's value (when **kwargs is request.form, some values
             # will be a 1-element list)
 
             if property == 'created_at':
-                value = get_current_date_time()  # we need bytes here (not plain str)
+                value = value = get_current_date_time()  # we need bytes here (not plain str)
 
             setattr(self, property, value)
 
