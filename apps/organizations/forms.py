@@ -34,9 +34,9 @@ class CreateOrganizationForm(FlaskForm):
     companycode = IntegerField('Codigo',
                             id='company_code_org',
                             validators=[DataRequired()])
-    companytype = StringField('Tipo de Organizacion',
-                            id='company_type_org'
-                              )
+    companytype = SelectField('Tipo de Organizacion',
+                            id='company_type_org',
+                            validators=None, coerce=int)
     createdat   = StringField('Creada el',
                             id='created_at_org',
                             validators=None )

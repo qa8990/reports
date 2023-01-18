@@ -79,6 +79,7 @@ def register():
                                    form=create_account_form)
 
         # else we can create the user
+        print("el request form** -->", request.form)
         user = Users(**request.form)
         db.session.add(user)
         db.session.commit()
