@@ -26,7 +26,7 @@ class Companies(db.Model):
             # will be a 1-element list)
 
             if property == 'created_at':
-                value = value = get_current_date_time()  # we need bytes here (not plain str)
+                value = get_current_date_time()  # we need bytes here (not plain str)
 
             setattr(self, property, value)
 
