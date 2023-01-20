@@ -56,6 +56,7 @@ class CompaniesTypes(db.Model):
     code = db.Column(db.String)
     description = db.Column(db.String(64), unique=True)
     status_id = db.Column(db.Integer, db.ForeignKey("status.status_id"), nullable=False)
+    image = db.Column(db.String(64))
     type = db.relationship("Companies", backref="type", lazy=True)
     #products = db.relationship('Product', backref='category', lazy=True)
 
