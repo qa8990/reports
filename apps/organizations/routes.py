@@ -20,7 +20,7 @@ def allcompanies():
     company_form = OrganizationForm()
         
     # Other style
-    company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description).join(CompaniesTypes.type)).all()
+    company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
     print('@@@ ### Allcompanies route ####  @@@', company, type(company))
 
     # Check the password
