@@ -4,22 +4,28 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from apps.home import blueprint
-from flask import render_template, request
+from flask import render_template, request, session
 from flask_login import login_required
 from jinja2 import TemplateNotFound
+from apps.organizations.util import get_last_company_added
+from apps.organizations.models import Companies
+from apps import db
 
 
 @blueprint.route('/index')
 @login_required
 def index():
+    last_data = Companies.get_last_company_added()
+    print(last_data)
 
-    return render_template('home/index.html', segment='index')
+    return render_template('home/index.html', segment='index', company=last_data)
 
 
 @blueprint.route('/<template>')
 @login_required
 def route_template(template):
-
+    last_data = Companies.get_last_company_added()
+    print(last_data)
     try:
 
         if not template.endswith('.html'):

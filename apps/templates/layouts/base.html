@@ -46,7 +46,9 @@
   
     {% include 'includes/navigation.html' %}
 
-    {% block content %}{% endblock content %}
+    {% block content %}
+       {{ modals() }}
+    {% endblock content %}
 
   </main>
 
