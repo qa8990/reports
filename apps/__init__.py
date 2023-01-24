@@ -6,6 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 import os
 
 from flask import Flask
+from flask_modals import Modal
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
@@ -61,6 +62,7 @@ def configure_database(app):
 def create_app(config):
     print('4 Create app')
     app = Flask(__name__)
+    modal = Modal(app)
     app.config.from_object(config)
     register_extensions(app)
     register_blueprints(app)

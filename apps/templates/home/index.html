@@ -17,12 +17,14 @@
               </div>
               <div class="text-end pt-1">
                 <p class="text-sm mb-0 text-capitalize">Ultima organizacion agregada</p>
-                <h4 class="mb-0">$53k</h4>
+                <h3 class="mb-0">{{company['name']}}</h3>
+                <p>{{company['description']}}</p>
+                
               </div>
             </div>
             <hr class="dark horizontal my-0">
             <div class="card-footer p-3">
-              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than lask week</p>
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% - {{company['created_at']}}</span></p>
             </div>
           </div>
         </div>

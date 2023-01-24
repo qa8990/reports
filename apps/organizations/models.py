@@ -4,8 +4,8 @@ from apps import db
 
 from apps.organizations.util import get_current_date_time
 from datetime import time, datetime
-from sqlalchemy.orm import relationship, backref
-
+from sqlalchemy.orm import relationship, backref, query
+from sqlalchemy import func, select
 class Companies(db.Model):
 
     __tablename__ = 'companies'
@@ -32,6 +32,28 @@ class Companies(db.Model):
 
     def __repr__(self):
         return str(self.name)
+
+    def get_all():
+        companies = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
+        print('get-all ', companies)
+        # Companies.query.all()
+        return companies
+
+    def get_company_byId(id):
+        
+        company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type).filter_by(company_id=id)).all()
+        print('get-by id ', company, type(company))
+        # Companies.query.all()
+        return company
+
+    def get_last_company_added():
+        print('last companie added')
+        max_date = db.session.query(func.max(Companies.created_at)).scalar()
+        last_company_added = Companies.query.filter_by(created_at = max_date).one()
+        #db.session.query(Companies).filter(Companies.created_at == max_date).all()
+        print(max_date)
+        print('last-company-date :::::>',last_company_added)
+        return last_company_added
 
 
 def organization_loader(id):

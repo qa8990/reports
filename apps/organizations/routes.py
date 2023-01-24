@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request, url_for
+from flask_modals import render_template_modal, response
 from apps.organizations import blueprint
 from apps import db, props, sql_scripts
 from sqlalchemy import select
@@ -6,6 +7,8 @@ from apps.organizations.forms import CreateOrganizationForm, OrganizationForm
 from apps.organizations.models import Companies, CompaniesTypes
 
 from apps.organizations.util import get_current_date_time
+
+ACTIVO = 1
 
 @blueprint.route('/')
 def route_default():
@@ -17,15 +20,47 @@ def route_default():
 @blueprint.route('/allcompanies', methods=['GET'])
 def allcompanies():
     print('@@@ ### Allcompanies route ####  @@@')
-    company_form = OrganizationForm()
-        
+      
     # Other style
-    company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
-    print('@@@ ### Allcompanies route ####  @@@', company, type(company))
+    #company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
+    #company_obj = Companies.query.filter_by(status_id = ACTIVO).fetchall()
+    company_obj = Companies.get_all()
+    print('#2', company_obj, type(company_obj))  #devuelve un objeto Companies
+    print('@@@ ### Allcompanies route ####  @@@', company_obj, type(company_obj))
 
     # Check the password
-    if company :
-        return render_template('organizations/companies.html', company=company)
+    if company_obj :
+        return render_template('organizations/companies.html', company=company_obj)
+
+@blueprint.route('/edit_company/<id>', methods=['GET', 'POST'])
+def edit_company(id):
+
+    print('En el EDIT_COMPANY')
+    form = OrganizationForm(request.form)
+    company_obj = Companies()
+   
+    #if request.method == 'GET':
+    print('Select(companies --->', id)
+    #company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description).where(Companies.company_id == id)).all()
+    company = db.session.execute(db.Query(Companies)).fetchall()
+    company_obj = Companies.query.filter_by(company_id = id).one()
+    print('#1', company, type(company))
+    print('#2', company_obj.name, type(company_obj))  #devuelve un objeto Companies
+    form = OrganizationForm(company_obj.name)
+    form.companyname.data = company[1]
+    form.companydesc.data = company[2]
+        #form.companycode.data = company[3]
+        #form.companytype.choices = [(g.company_type_id, g.description) for g in company_types]
+        #return redirect(url_for('organizations_blueprint.allcompanies'), company=company_obj, form=form)
+    render_template('organizations/modal.html', form=form)
+
+@blueprint.route('/edit_company2/<id>', methods=['GET', 'POST'])    
+def edit_company2(id):
+    company = Companies.get_company_byId(id)
+    #company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type).filter_by(company_id=id)).all()
+    print('edit-company2', company)
+    return render_template('organizations/organization.html',  id=id, company=company)
+    #render_template('organizations/modal.html', company=company, id=id)
 
 @blueprint.route('/editcompany/<id>', methods=['GET', 'POST'])
 def editcompany(id):
@@ -63,6 +98,8 @@ def editcompany(id):
 
     print("El form >>> ", edit_organization_form.data)
     return render_template('organizations/company_modal.html', form=edit_organization_form, company_types=company_types)
+    #render_template('organizations/edit_company.html', form=edit_organization_form, company_types=company_types)
+    
 
 @blueprint.route('/addcompany', methods=['GET', 'POST'])
 def addcompany():
