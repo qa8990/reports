@@ -56,11 +56,21 @@ def edit_company(id):
 
 @blueprint.route('/edit_company2/<id>', methods=['GET', 'POST'])    
 def edit_company2(id):
-    company = Companies.get_company_byId(id)
-    #company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type).filter_by(company_id=id)).all()
-    print('edit-company2', company)
-    return render_template('organizations/organization.html',  id=id, company=company)
-    #render_template('organizations/modal.html', company=company, id=id)
+    form = OrganizationForm()
+    if request.method == 'GET':
+        company = Companies.get_company_byId(id)
+        companyTypes = CompaniesTypes.get_all_company_types()
+        form.companyname.data = company[0][1]
+        form.companydesc.data = company[0][2]
+        form.companycode.data = company[0][6]
+        form.companytype.choices = [(g.company_type_id, g.description) for g in companyTypes]
+        print('edit-company2', form.data)
+        return render_template('organizations/organization.html',  id=id, form=form)
+
+    if form.is_submitted and request.method == 'POST':
+        company = Companies.update_company_byId(form, id)
+        return redirect(url_for('organizations_blueprint.allcompanies'))
+        
 
 @blueprint.route('/editcompany/<id>', methods=['GET', 'POST'])
 def editcompany(id):
@@ -73,14 +83,14 @@ def editcompany(id):
 
         statement = 'SELECT  company_id, name, description, code, company_type_id, created_at FROM companies where company_id = :parm1'
         company = db.session.execute(statement, {'parm1' : comp_id}).fetchone()
+        companyTypes = CompaniesTypes.get_all_company_types()
         
-        company_types = db.session.execute(select(CompaniesTypes.company_type_id, CompaniesTypes.code, CompaniesTypes.description).where(CompaniesTypes.status_id == 1)).all()
         #company_obj = Companies(company)
-        print(company_types)
+        print(companyTypes)
         edit_organization_form.companyname.data = company[1]
         edit_organization_form.companydesc.data = company[2]
         edit_organization_form.companycode.data = company[3]
-        edit_organization_form.companytype.choices = [(g.company_type_id, g.description) for g in company_types]
+        edit_organization_form.companytype.choices = [(g.company_type_id, g.description) for g in companyTypes]
     
     #select(Companies).filter_by(company_id=int(id))
     #company = db.session.execute(statement, {'parm1' : comp_id}).fetchone()
@@ -90,14 +100,15 @@ def editcompany(id):
         new_code = edit_organization_form.companycode.data
         new_type = edit_organization_form.companytype.data
 
-        statement = 'UPDATE companies SET name = :parm1, description = :parm2, code = :parm3, company_type_id = :parm4 where company_id = :parm5'
-        company = db.session.execute(statement, {'parm1' : new_name, 'parm2' : new_desc, 'parm3' : new_code, 'parm4' : new_type, 'parm5': comp_id, })
-        db.session.commit()
+        #statement = 'UPDATE companies SET name = :parm1, description = :parm2, code = :parm3, company_type_id = :parm4 where company_id = :parm5'
+        #company = db.session.execute(statement, {'parm1' : new_name, 'parm2' : new_desc, 'parm3' : new_code, 'parm4' : new_type, 'parm5': comp_id, })
+        #db.session.commit()
+        
         print("POST ...",edit_organization_form.data)
         return redirect(url_for('organizations_blueprint.allcompanies'))
 
     print("El form >>> ", edit_organization_form.data)
-    return render_template('organizations/company_modal.html', form=edit_organization_form, company_types=company_types)
+    return render_template('organizations/company_modal.html', form=edit_organization_form, company_types=companyTypes)
     #render_template('organizations/edit_company.html', form=edit_organization_form, company_types=company_types)
     
 

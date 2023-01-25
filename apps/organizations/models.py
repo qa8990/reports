@@ -40,8 +40,7 @@ class Companies(db.Model):
         return companies
 
     def get_company_byId(id):
-        
-        company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type).filter_by(company_id=id)).all()
+        company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at, Companies.code).join(CompaniesTypes.type).filter_by(company_id=id)).all()
         print('get-by id ', company, type(company))
         # Companies.query.all()
         return company
@@ -55,6 +54,16 @@ class Companies(db.Model):
         print('last-company-date :::::>',last_company_added)
         return last_company_added
 
+    def update_company_byId(self, id):
+        print("estoy actualizando la company :", type(self.data) )
+        statement = 'UPDATE companies SET name = :parm1, description = :parm2, code = :parm3, company_type_id = :parm4 where company_id = :parm5'
+        company = db.session.execute(statement, {'parm1' : self.companyname.data, 'parm2' : self.companydesc.data, 'parm3' : self.companycode.data, 'parm4' : self.companytype.data, 'parm5': id, })
+        db.session.commit()
+         
+        
+        return 
+        #
+        
 
 def organization_loader(id):
     print('***** en el loader de organization ********')
@@ -92,6 +101,10 @@ class CompaniesTypes(db.Model):
 
     def __repr__(self):
         return str(self.company_type_id)
+
+    def get_all_company_types():
+        company_types = db.session.execute(select(CompaniesTypes.company_type_id, CompaniesTypes.code, CompaniesTypes.description).where(CompaniesTypes.status_id == 1)).all()
+        return company_types
 
 
 class Status(db.Model):

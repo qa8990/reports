@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, IntegerField, SelectField, TextAreaField
 from wtforms.validators import Email, DataRequired, NumberRange
 
 # Organizations
@@ -9,7 +9,7 @@ class OrganizationForm(FlaskForm):
     companyname = StringField('Razon Social',
                          id='company_name_org',
                          validators=[DataRequired()])
-    companydesc = StringField('Descripcion',
+    companydesc = TextAreaField('Descripcion',
                              id='company_description_org',
                              validators=[DataRequired()])
     companycode = IntegerField('Codigo',
