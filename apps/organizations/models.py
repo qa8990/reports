@@ -17,21 +17,34 @@ class Companies(db.Model):
     company_type_id = db.Column(db.Integer, db.ForeignKey("company_types.company_type_id"))
     #company_type_id = relationship("CompaniesTypes", lazy='joined', backref=backref("type"))
     created_at = db.Column(db.String(20))
-    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=False)
+    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=True )
 
     def __init__(self, **kwargs):
+        print("Registrando un companies  !!!!!!!!!!", self, type(self))
         for property, value in kwargs.items():
             # depending on whether value is an iterable or not, we must
             # unpack it's value (when **kwargs is request.form, some values
             # will be a 1-element list)
+            if hasattr(value, '__iter__') and not isinstance(value, str):
+                # the ,= unpack of a singleton fails PEP8 (travis flake8 test)
+                value = value[0]
 
             if property == 'created_at':
                 value = get_current_date_time()  # we need bytes here (not plain str)
 
+            if property == 'status_id':
+                value = 1
+
+            print("setattr  *********** > ", self, 'properpty : ', property, 'Value : ',  value)
             setattr(self, property, value)
+
+            #### REVISAR los metods que faltan aca ##################################   <------------------
+            ######## @#$243234234234234
+            ### comparar como lo usasn en authentication
 
     def __repr__(self):
         return str(self.name)
+
 
     def get_all():
         companies = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
@@ -57,12 +70,15 @@ class Companies(db.Model):
     def update_company_byId(self, id):
         print("estoy actualizando la company :", type(self.data) )
         statement = 'UPDATE companies SET name = :parm1, description = :parm2, code = :parm3, company_type_id = :parm4 where company_id = :parm5'
-        company = db.session.execute(statement, {'parm1' : self.companyname.data, 'parm2' : self.companydesc.data, 'parm3' : self.companycode.data, 'parm4' : self.companytype.data, 'parm5': id, })
+        company = db.session.execute(statement, {'parm1' : self.name.data, 'parm2' : self.description.data, 'parm3' : self.code.data, 'parm4' : self.company_type_id.data, 'parm5': id, })
         db.session.commit()
-         
-        
         return 
-        #
+    
+    def create_company(company):
+        print("estoy creando la company :", type(company) )
+        db.session.add(Companies(company))
+        db.session.commit()
+        return 
         
 
 def organization_loader(id):
@@ -73,7 +89,7 @@ def organization_loader(id):
 
 def request_loader(request):
     id = request.form.get('companyid')
-    print('$$$$$$$$ --> ',id)
+    print('REQUES LOADER de Companies ^^^^^^^<..> <..> <..> <..> <<..>>  --> ',id)
     company = Companies.query.filter_by(company_id=id).first()
     print('#### User >', company)
     return company if company else None

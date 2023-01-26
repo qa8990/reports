@@ -61,10 +61,12 @@ def register():
 
         username = request.form['username']
         email = request.form['email']
+        print('ESTOY EN EL IF REGISTER #1')
 
         # Check usename exists
         user = Users.query.filter_by(username=username).first()
         if user:
+            print('ESTOY EN EL IF USER #2')
             return render_template('accounts/register.html',
                                    msg='Username already registered',
                                    success=False,
@@ -73,6 +75,7 @@ def register():
         # Check email exists
         user = Users.query.filter_by(email=email).first()
         if user:
+            print('ESTOY EN EL IF USER #3')
             return render_template('accounts/register.html',
                                    msg='Email already registered',
                                    success=False,
@@ -81,6 +84,7 @@ def register():
         # else we can create the user
         print("el request form** -->", request.form)
         user = Users(**request.form)
+        print("el request form** USERS @@@@@@@@@@@@@@@@@@@  -->", user)
         db.session.add(user)
         db.session.commit()
         

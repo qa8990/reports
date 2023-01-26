@@ -20,6 +20,7 @@ class Users(db.Model, UserMixin):
     status = db.Column(db.Integer)
 
     def __init__(self, **kwargs):
+        print("Registrando un user !!!!!!!!!!", self, type(self))
         for property, value in kwargs.items():
             # depending on whether value is an iterable or not, we must
             # unpack it's value (when **kwargs is request.form, some values
@@ -31,6 +32,7 @@ class Users(db.Model, UserMixin):
             if property == 'password':
                 value = hash_pass(value)  # we need bytes here (not plain str)
 
+            print("setattr  !!!!!!!!!!", self, 'properpty : ', property, 'Value : ',  value)
             setattr(self, property, value)
 
     def __repr__(self):

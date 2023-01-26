@@ -5,6 +5,7 @@ from apps import db, props, sql_scripts
 from sqlalchemy import select
 from apps.organizations.forms import CreateOrganizationForm, OrganizationForm
 from apps.organizations.models import Companies, CompaniesTypes
+from apps.dbManager import create_new_company
 
 from apps.organizations.util import get_current_date_time
 
@@ -60,17 +61,43 @@ def edit_company2(id):
     if request.method == 'GET':
         company = Companies.get_company_byId(id)
         companyTypes = CompaniesTypes.get_all_company_types()
-        form.companyname.data = company[0][1]
-        form.companydesc.data = company[0][2]
-        form.companycode.data = company[0][6]
-        form.companytype.choices = [(g.company_type_id, g.description) for g in companyTypes]
+        form.name.data = company[0][1]
+        form.description.data = company[0][2]
+        form.code.data = company[0][6]
+        form.company_type_id.choices = [(g.company_type_id, g.description) for g in companyTypes]
         print('edit-company2', form.data)
         return render_template('organizations/organization.html',  id=id, form=form)
 
     if form.is_submitted and request.method == 'POST':
         company = Companies.update_company_byId(form, id)
         return redirect(url_for('organizations_blueprint.allcompanies'))
-        
+
+@blueprint.route('/add_company', methods=['GET', 'POST'])    
+def add_company():
+    form = CreateOrganizationForm(request.form)
+    companyTypes = CompaniesTypes.get_all_company_types()
+    if request.method == 'GET':
+        company = Companies()
+        companyTypes = CompaniesTypes.get_all_company_types()
+        form.company_type_id.choices = [(g.company_type_id, g.description) for g in companyTypes]
+        print('edit-company2', form.data)
+        return render_template('organizations/organization.html',  form=form)
+
+    if form.is_submitted and request.method == 'POST':
+        company = Companies(**request.form)
+        #Companies(
+        #    companyname = request.form["companyname"],
+        #    companydesc = request.form["companydesc"],
+        #    companycode = request.form["companycode"],
+        #    companytype = request.form["companytype"]
+        #)
+        print("-----------------compnay adding &&&&&&&&&&&&&&&& ------------------------------")
+        print( request.form)
+        print("+++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        print(company)
+        print("-----------------compnay adding &&&&&&&&&&&&&&&& ------------------------------")
+        new_company = create_new_company(company)
+        return redirect(url_for('organizations_blueprint.allcompanies'))       
 
 @blueprint.route('/editcompany/<id>', methods=['GET', 'POST'])
 def editcompany(id):
