@@ -291,7 +291,8 @@ textarea {
   margin: 1;
   font-family: inherit;
   font-size: inherit;
-  line-height: inherit; }
+  line-height: inherit;
+  max-width: max-content=200; }
 
 button,
 select {
@@ -1962,7 +1963,12 @@ progress {
             margin-inline-end: 0.75rem; }
 
 textarea.form-control {
-  min-height: unset; }
+  min-height: 8rem;
+  padding: 0.4rem; 
+  border-style: groove;
+  outline: #171a1d;
+  box-shadow: #1662c5;
+  }
 
 textarea.form-control-sm {
   min-height: unset; }
@@ -14009,7 +14015,7 @@ label,
   font-family: 'Material Icons Round';
   font-weight: normal;
   font-style: normal;
-  font-size: 20px;
+  font-size: 24px;
   /* Preferred icon size */
   display: inline-block;
   line-height: 1;
@@ -14041,7 +14047,7 @@ label,
     top: 11px;
     position: relative; }
   .icon-shape .ni {
-    top: 14px; }
+    top: 1x; }
 
 .icon-xxs {
   width: 20px;
@@ -16042,7 +16048,11 @@ a {
   line-height: 1.5; }
 
 .text-xs {
-  line-height: 1.25; }
+  line-height: 1.25;
+  max-width: 1000px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
 
 p, .p {
   font-size: 1rem; }

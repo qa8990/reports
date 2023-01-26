@@ -1,45 +1,52 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SelectField, TextAreaField
+from wtforms import StringField, PasswordField, IntegerField, SelectField, TextAreaField, widgets, validators
 from wtforms.validators import Email, DataRequired, NumberRange
 
 # Organizations
 
 
 class OrganizationForm(FlaskForm):
-    companyname = StringField('Razon Social',
-                         id='company_name_org',
-                         validators=[DataRequired()])
-    companydesc = TextAreaField('Descripcion',
+    name =              StringField('Razon Social',
+                            id='company_name_org',
+                            validators=[DataRequired()])
+    description =       TextAreaField('Descripcion',
                              id='company_description_org',
                              validators=[DataRequired()])
-    companycode = IntegerField('Codigo',
+    code =              IntegerField('Codigo',
                             id='company_code_org',
                             validators=[DataRequired()])
-    companytype = SelectField('Tipo de Organizacion',
+    company_type_id =   SelectField('Tipo de Organizacion',
                             id='company_type_org',
                             validators=None, coerce=int)
+    created_at   = StringField('Creada el',
+                            id='created_at_org',
+                            validators=None )
+    status_id = IntegerField('Estatus',
+                            id='company_estatus_org',
+                            validators=None)                            
                            
 
 
 class CreateOrganizationForm(FlaskForm):
-    companyid   = IntegerField('Company Id',
+    company_id   = IntegerField('Company Id',
                          id='company_id_org',
                          validators=[NumberRange(1, 999999)])
-    companyname = StringField('Razon Social',
+    name = StringField('Razon Social',
                          id='company_name_org',
                          validators=[DataRequired()])
-    companydesc = StringField('Descripcion',
+    description = TextAreaField('Descripcion',
                              id='company_description_org',
-                             validators=[DataRequired()])
-    companycode = IntegerField('Codigo',
+                             validators=[DataRequired(), validators.length(max=200)],
+                             )
+    code = IntegerField('Codigo',
                             id='company_code_org',
                             validators=[DataRequired()])
-    companytype = SelectField('Tipo de Organizacion',
+    company_type_id = SelectField('Tipo de Organizacion',
                             id='company_type_org',
                             validators=None, coerce=int)
-    createdat   = StringField('Creada el',
+    created_at   = StringField('Creada el',
                             id='created_at_org',
                             validators=None )
-    companystat = IntegerField('Estatus',
+    status_id = IntegerField('Estatus',
                             id='company_estatus_org',
                             validators=None)
