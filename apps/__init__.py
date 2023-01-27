@@ -8,7 +8,7 @@ import os
 from flask import Flask
 from flask_modals import Modal
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, Pagination
 from importlib import import_module
 from apps.utils.stocks_properties import read_properties_file
 
@@ -28,7 +28,7 @@ def register_extensions(app):
 
 def register_blueprints(app):
     print('1 Register blueprints')
-    for module_name in ('authentication', 'home', 'organizations'):
+    for module_name in ('authentication', 'home', 'masterplan', 'organizations'):
         module = import_module('apps.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 
