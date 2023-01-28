@@ -42,11 +42,16 @@ class MasterPlan(db.Model):
         return str(self.account_name)
 
 
-    def get_all():
+    def get_all(page_nbr):
         accounts = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name)).all()
-        page1 = MasterPlan.query.paginate(page=1, per_page=10)
+        page1 = MasterPlan.query.paginate(page=page_nbr, per_page=10)
         print("page1", page1.items)
         print('get-all ', page1)
+        return page1
+
+    def get_alls():
+        accounts = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name)).all()
+        page1 = MasterPlan.query.all()
         return page1
 
     def get_account_byId(id):

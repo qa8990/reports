@@ -1,0 +1,433 @@
+nrocuenta,cuenta
+100000000000, ACTIVO
+110000000000,DISPONIBILIDADES
+111000000000,EFECTIVO
+111010000000,Billetes y monedas nacionales
+111010100000,Billetes y monedas nacionales
+111010100001,Billetes y monedas nacionales
+112000000000,CUENTA BANCO CENTRAL DE VENEZUELA
+112800000000,Cuenta Banco Central de Venezuela
+112800100000,Cuenta Banco Central de Venezuela
+112800100001,Cuenta Banco Central de Venezuela
+113000000000,"BANCOS, ENTIDADES DE AHORRO Y PRÉSTAMO Y OTRAS INSTITUCIONES FINANCIERAS DEL PAÍS"
+113010000000,Depósitos en bancos del país
+113010100000,Depósitos en bancos del país
+113010101000,Depósitos en cuentas corrientes. Bancos del país
+113010101001,Depósitos en cuentas corrientes. Bancos del país
+113010200000,Depósitos en bancos del país $
+113010201000,Depósitos en cuentas corrientes. Bancos del país $
+113010201001,Depósitos en cuentas corrientes. Bancos del país $
+114000000000,"BANCOS, ENTIDADES DE AHORRO Y PRÉSTAMO Y OTRAS INSTITUCIONES FINANCIERAS DEL EXTERIOR"
+114010000000,Depósitos en bancos y otras instituciones del exterior
+114010200000,Depósitos en bancos y otras instituciones del exterior
+114010201000,Depósitos en cuentas corrientes. Bancos y otras instituciones del exterior
+114010201001,Depósitos en cuentas corrientes. Bancos y otras instituciones del exterior
+114010203000,Depósitos en cuentas money market. Bancos y otras instituciones del exterior
+114010203001,Depósitos en cuentas money market. Bancos y otras instituciones del exterior
+120000000000,INVERSIONES EN TÍTULOS VALORES
+121000000000,INVERSIONES EN TÍTULOS VALORES PARA NEGOCIAR 
+121160000000,BANCOS del país. Portafolio para Comercialización de Acciones
+121160100000,Acciones de BANCOS  y EAPs  del país objeto de oferta pública. Portafolio para Comercialización de Acciones
+121160101000,BANCOS del país. Portafolio para Comercialización de Acciones
+121160101001,BANCOS del país. Portafolio para Comercialización de Acciones
+121160200000,"Acciones de BANCOS  y EAPs  del país objeto de oferta pública. Portafolio para Comercialización de Acciones, US$"
+121160201000,"BANCOS del país. Portafolio para Comercialización de Acciones, US$"
+121160201001,"BANCOS del país. Portafolio para Comercialización de Acciones, US$"
+121170000000,Acciones de empresas privadas del país distintas a BANCOS y EAPs objeto de oferta pública. Portafolio para Comercialización de Acciones 
+121170100000,Acciones de empresas privadas del país distintas a BANCOS y EAPs objeto de oferta pública. Portafolio para Comercialización de Acciones 
+121170100001,Acciones de empresas privadas del país distintas a BANCOS y EAPs objeto de oferta pública. Portafolio para Comercialización de Acciones 
+122000000000,INVERSIONES EN TÍTULOS VALORES DISPONIBLES PARA LA VENTA
+122110000000,Obligaciones emitidas por empresas privadas distintas a BANCOS y EAPs del país. Portafolio “PIC”
+122110100000,Obligaciones emitidas por empresas privadas distintas a BANCOS y EAPs del país. Portafolio “PIC”
+122110101000,"Obligaciones emitidas por empresas privadas distintas a BANCOS y EAPs del país distintas a relacionadas, filiales o afiliadas. Portafolio “PIC”"
+122110101010,Papeles comerciales 
+122110101011,Papeles comerciales 
+122110101020,Bonos quirografarios
+122110101021,Bonos quirografarios
+122110200000,"Obligaciones emitidas por empresas privadas distintas a BANCOS y EAPs del país. Portafolio “PIC”, $"
+122110201000,"Obligaciones emitidas por empresas privadas distintas a BANCOS y EAPs del país distintas a relacionadas, filiales o afiliadas. Portafolio “PIC”; $"
+122110201030,Bonos y obligaciones indexadas a moneda extranjera
+122110201031,Bonos y obligaciones indexadas a moneda extranjera
+130000000000,ACTIVOS FINANCIEROS DIRECTOS
+131000000000,ACTIVOS FINANCIEROS DIRECTOS VIGENTES
+131830000000,Préstamo de dinero con riesgo de crédito directo no autorizado por la Sunaval
+131830100000,Préstamo de dinero con riesgo de crédito directo no autorizado por la Superintendencia Nacional de Valores
+131830100001,Préstamo de dinero con riesgo de crédito directo no autorizado por la Superintendencia Nacional de Valores
+131830200000,"Préstamo de dinero con riesgo de crédito directo no autorizado por la Superintendencia Nacional de Valores, Mon Ext"
+131830200001,"Préstamo de dinero con riesgo de crédito directo no autorizado por la Superintendencia Nacional de Valores, Mon Ext"
+139000000000,(PROVISIONES PARA ACTIVO FINANCIEROS DIRECTOS)
+139800000000,(Provisión automática de prestamos de dinero con riesgo de crédito directo)
+139800100000,(Provisión automática de prestamos de dinero con riesgo de crédito directo)
+139800100001,(Provisión automática de prestamos de dinero con riesgo de crédito directo)
+139800200000,"(Provisión automática de prestamos de dinero con riesgo de crédito directo), Mon Ext"
+139800200001,(Provisión automática de prestamos de dinero con riesgo de crédito directo) Mon Ext
+140000000000,"INTERESES, DIVIDENDOS Y COMISIONES POR COBRAR"
+142000000000,RENDIMIENTOS POR COBRAR POR INVERSIONES EN TÍTULOS VALORES
+142020000000,Rendimientos por cobrar por inversiones en títulos valores disponibles para la venta
+142020100000,Rendimientos por cobrar por inversiones en títulos valores disponibles para la venta
+142020101000,Rendimientos por cobrar por inversiones en títulos valores. Portafolio “PIC”
+142020101001,Rendimientos por cobrar por inversiones en títulos valores. Portafolio “PIC”
+142020200000,"Rendimientos por cobrar por inversiones en títulos valores disponibles para la venta, $"
+142020201000,"Rendimientos por cobrar por inversiones en títulos valores. Portafolio “PIC”, $"
+142020201001,"Rendimientos por cobrar por inversiones en títulos valores. Portafolio “PIC”, $"
+170000000000,BIENES DE USO
+172000000000,EDIFICACIONES E INSTALACIONES
+172020000000,Instalaciones
+172020100000,Instalaciones
+172020100001,Instalaciones
+172490000000,(Depreciación acumulada de edificaciones e instalaciones) 
+172490100000,(Depreciación acumulada de edificaciones e instalaciones) 
+172490100001,(Depreciación acumulada de edificaciones e instalaciones) 
+173000000000,MOBILIARIO Y EQUIPOS 
+173010000000,Mobiliario de oficina
+173010100000,Mobiliario de oficina
+173010100001,Mobiliario de oficina
+173020000000,Equipos de computación
+173020100000,Equipos de computación
+173020100001,Equipos de computación
+173490000000,(Depreciación acumulada de mobiliario y equipos) 
+173490100000,(Depreciación acumulada de mobiliario y equipos) 
+173490100001,(Depreciación acumulada de mobiliario y equipos) 
+180000000000,OTROS ACTIVOS
+181000000000,GASTOS DIFERIDOS
+181030000000,Software
+181030100000,Software
+181030101000,Valor de origen del software 
+181030101001,Valor de origen del software 
+181030102000,(Amortización acumulada del software)
+181030102001,(Amortización acumulada del software)
+186000000000,PARTIDAS POR APLICAR
+186990000000,Otras partidas por aplicar
+186990100000,Otras partidas por aplicar
+186990100001,Otras partidas por aplicar
+186990200000,"Otras partidas por aplicar, Mon Ext"
+186990200001,"Otras partidas por aplicar, Mon Ext"
+188000000000,VARIOS
+188010000000,Anticipos a proveedores
+188010100000,Anticipos a proveedores
+188010100001,Anticipos a proveedores
+188020000000,Impuestos pagados por anticipado
+188020100000,Impuestos pagados por anticipado
+188020100001,Impuestos pagados por anticipado
+188060000000,Otros gastos pagados por anticipado
+188060100000,Otros gastos pagados por anticipado
+188060199000,Otros
+188060199001,Otros
+188110000000,Erogaciones recuperables 
+188110100000,Erogaciones recuperables 
+188110104000,Erogaciones recuperables varias
+188110104001,Erogaciones recuperables varias
+188110200000,"Erogaciones recuperables , mon ext"
+188110204000,"Erogaciones recuperables varias, mon ext"
+188110204001,"Erogaciones recuperables varias, mon ext"
+188120000000,Títulos Valores Dados en Garantía 
+188120100000,Títulos Valores Dados en Garantía 
+188120101000,Títulos Valores Dados en Garantía por Operaciones con Bolsa de Valores y/o Cámaras de Compensación
+188120101001,Títulos Valores Dados en Garantía por Operaciones con Bolsa de Valores y/o Cámaras de Compensación 
+188800000000,"Variación por ajuste a valor de mercado de contratos spot, forward y de futuros "
+188800100000,"Variación por ajuste a valor de mercado de contratos spot, forward y de futuros "
+188800101000,Variación por ajuste a valor de mercado de contratos spot de títulos valores
+188800101120,"Incremento por ajuste a valor de mercado de contratos spot de títulos valores de deuda con bolsas de valores. Portafolio ""PIC"""
+188800101121,"Incremento por ajuste a valor de mercado de contratos spot de títulos valores de deuda con bolsas de valores. Portafolio ""PIC"""
+188800102000,Variación por ajuste a valor de mercado de contratos forward de títulos valores
+188800102150,"Incremento por ajuste a valor de mercado de contratos forward de títulos valores de deuda con otras personas jurídicas. Portafolio ""PIC"""
+188800102151,"Incremento por ajuste a valor de mercado de contratos forward de títulos valores de deuda con otras personas jurídicas. Portafolio ""PIC"""
+188800102160,"Incremento por ajuste a valor de mercado de contratos forward de títulos valores de deuda con personas naturales. Portafolio ""PIC"""
+188800102161,"Incremento por ajuste a valor de mercado de contratos forward de títulos valores de deuda con personas naturales. Portafolio ""PIC"""
+200000000000, PASIVO
+240000000000,PASIVOS FINANCIEROS DIRECTOS
+245000000000,OBLIGACIONES POR OTROS FINANCIAMIENTOS HASTA UN AÑO
+245990000000,Otros financiamientos hasta un año
+245990100000,Otros financiamientos hasta un año
+245990101000,Accionistas. Otros financiamientos hasta un año 
+245990101001,Accionistas. Otros financiamientos hasta un año 
+246000000000,OBLIGACIONES POR OTROS FINANCIAMIENTOS A MÁS DE UN AÑO
+246990000000,Otros financiamientos a más de un año
+246990100000,Otros financiamientos a más de un año
+246990101000,Accionistas. Otros financiamientos a más de un año
+246990101001,Accionistas. Otros financiamientos a más de un año
+246990200000,"Otros financiamientos a más de un año, Mon Ext"
+246990201000,"Accionistas. Otros financiamientos a más de un año, Mon Ext"
+246990201001,"Accionistas. Otros financiamientos a más de un año, Mon Ext"
+270000000000,OTROS PASIVOS
+271000000000,APORTACIONES Y RETENCIONES LABORALES POR PAGAR
+271010000000,Aportaciones patronales por pagar
+271010100000,Aportaciones patronales por pagar
+271010101000,Instituto Nacional de Cooperación Educativa
+271010101001,Instituto Nacional de Cooperación Educativa
+271010102000,Ley de política habitacional
+271010102001,Ley de política habitacional 
+271010107000,Paro forzoso
+271010107001, Paro Forzoso
+271010109000,Seguro social obligatorio
+271010109001,Seguro social obligatorio
+271020000000,Aportaciones laborales retenidas por pagar
+271020100000,Aportaciones laborales retenidas por pagar
+271020101000,Instituto Nacional de Cooperación Educativa
+271020101001,Instituto Nacional de Cooperación Educativa
+271020102000,Ley de política habitacional
+271020102001,Ley de política habitacional
+271020107000,Paro forzoso
+271020107001,Paro forzoso
+271020109000,Seguro social obligatorio
+271020109001,Seguro social obligatorio 
+272000000000, VARIAS
+272010000000,Proveedores
+272010100000,Proveedores
+272010100001,Proveedores
+272030000000,Servicios por pagar
+272030100000,Servicios por pagar
+272030100001,Servicios por pagar 
+272070000000,Utilidades por pagar 
+272070100000,Utilidades por pagar
+272070100001,Utilidades por pagar
+272080000000,Bono vacacional por pagar
+272080100000,Bono vacacional por pagar
+272080100001,Bono vacacional por pagar
+272130000000,Impuestos retenidos al personal y accionistas
+272130100000,Impuestos retenidos al personal y accionistas
+272130100001,Impuestos retenidos al personal y accionistas
+272140000000,Impuestos retenidos a terceros
+272140100000,Impuestos retenidos a terceros
+272140199000,Otros impuestos retenidos a terceros
+272140199001,Otros impuestos retenidos a terceros
+272810000000,Impuesto al valor agregado (IVA)
+272810100000,Impuesto al valor agregado (IVA)
+272810101000,(Impuesto al valor agregado (IVA activo) (crédito fiscal)
+272810101001,(Impuesto al valor agregado (IVA activo) (crédito fiscal)
+272990000000,otras cuentas por pagar varias
+272990100000,otras cuentas por pagar varias
+272990100001,otras cuentas por pagar varias
+274000000000,OTRAS PROVISIONES
+274010000000,Provisiones para antigüedad
+274010100000,Provisiones para antigüedad
+274010100001,Provisiones para antigüedad
+274020000000,Provisiones para intereses sobre prestaciones sociales
+274020100000,Provisiones para intereses sobre prestaciones sociales
+274020100001,Provisiones para intereses sobre prestaciones sociales
+274050000000,Provisiones para impuestos
+274050100000,Provisiones para impuestos
+274050100001,Provisiones para impuestos
+274990000000,Otras provisiones
+274990100000,Otras provisiones
+274990100001,Otras provisiones
+276000000000,PARTIDAS POR APLICAR 
+276990000000,Otras partidas por aplicar 
+276990100000,Otras partidas por aplicar 
+276990100001,Otras partidas por aplicar 
+276990200000,"Otras partidas por aplicar, US  $"
+276990200001,"Otras partidas por aplicar, US  $"
+300000000000,PATRIMONIO
+310000000000,CAPITAL SOCIAL
+311000000000,CAPITAL PAGADO
+311010000000,Capital común 
+311010100000,Capital común 
+311010101000,Capital común suscrito
+340000000000,RESERVAS DE CAPITAL
+341000000000,RESERVA LEGAL 
+341010000000,Reserva legal  
+341010100000,Reserva legal 
+350000000000,AJUSTES AL PATRIMONIO
+352000000000,"Ganancias o pérdidas por fluctuaciones cambiarias, por tenencia de activos y pasivos en moneda extranjera."
+352010000000,Ganancia por fluctuaciones cambiarias
+352010200000,Ganancia por fluctuaciones cambiarias
+352020000000,Pérdida por fluctuaciones cambiarias
+352020200000,Pérdida por fluctuaciones cambiarias
+360000000000,RESULTADOS ACUMULADOS 
+361000000000,INCREMENTOS DEL PATRIMONIO 
+361030000000,Utilidades no distribuidas
+361030100000,Utilidades no distribuidas
+361030102000,Ganancias acumuladas de ejercicios anteriores
+363000000000,SUPERÁVIT NO REALIZADO POR AJUSTE A VALOR DE MERCADO RESTRINGIDO
+363010000000,Ganancia o perdida no realizada  por ajuste a valor de mercado
+363010100000,Ganancia o perdida no realizada  por ajuste a valor de mercado
+363010102000,Ganancia o pérdida no realizada por ajuste a valor de mercado. Portafolio para Comercialización de Acciones
+400000000000,GASTOS
+420000000000,GASTOS POR PROVISIONES Y DESVALORIZACIONES DE ACTIVOS FINANCIEROS
+421000000000,PROVISIÓN AUTOMÁTICA DE PRÉSTAMO DE DINERO
+421800000000,Provisión automática de prestamos de dinero con riesgo de crédito directo
+421800100000,Provisión automática de prestamos de dinero con riesgo de crédito directo
+421820000000,Otras Provisiones
+421820100000,Otras Provisiones
+430000000000,OTROS GASTOS OPERATIVOS
+431000000000,COMISIONES POR SERVICIOS BURSÁTILES Y SERVICIOS BANCARIOS
+431040000000,Comisiones por servicios bursátiles y servicios bancarios 
+431040100000,Comisiones por servicios bursátiles y servicios bancarios 
+431040101000,BANCOS del país. Comisiones por servicios bursátiles y servicios bancarios 
+431040105000,Bolsas de Valores del país. Comisiones por servicios bursátiles y servicios bancarios 
+431040200000,"Comisiones por servicios bursátiles y servicios bancarios, Mon Ext US$ "
+431040201000,"BANCOS del país. Comisiones por servicios bursátiles y servicios bancarios, Mon Ext US$  "
+431040203000,"SCV del país. Comisiones por servicios bursátiles y servicios bancarios, Mon Ext US$   "
+431800000000,Comisiones por custodia de valores ante depositarios autorizados
+431800100000,Comisiones por custodia de valores ante depositarios autorizados
+431800101000,Caja de Valores del país. Comisiones por custodia de valores ante depositarios autorizados
+431810000000,Comisiones por traspaso de valores
+431810100000,Comisiones por traspaso de valores
+431810101000,Agentes de traspaso del país. Comisiones por traspaso de valores
+432000000000,DIFERENCIAS EN CAMBIO      
+432980000000,Diferencias en Cambio    
+432980200000,Diferencias en Cambio    
+432980210000,"Diferencias en cambio por otras cuentas por pagar, provisiones y otros pasivos"
+440000000000,GASTOS GENERALES Y ADMINISTRATIVOS
+441000000000,GASTOS DE PERSONAL
+441010000000,Sueldos de personal permanente
+441010100000,Sueldos de personal permanente
+441060000000,Utilidades y bonificaciones
+441060100000,Utilidades y bonificaciones
+441110000000,Bonos de incentivos
+441110100000,Bonos de incentivos
+441120000000,Vacaciones
+441120100000,Vacaciones
+441140000000,Dietas de directores 
+441140100000,Dietas de directores 
+441210000000,Prestaciones sociales del personal
+441210100000,Prestaciones sociales del personal
+441220000000,Aportaciones patronales
+441220100000,Aportaciones patronales
+441230000000,Intereses sobre prestaciones sociales
+441230100000,Intereses sobre prestaciones sociales
+441990000000,Otros gastos de personal
+441990100000,Otros gastos de personal
+442000000000,GASTOS POR SERVICIOS EXTERNOS 
+442060000000,Asesoría técnica y gerencial
+442060100000,Asesoría técnica y gerencial
+442070000000,Auditoria externa
+442070100000,Auditoria externa
+442990000000,Otros servicios externos contratados
+442990100000,Otros servicios externos contratados
+443000000000,GASTOS DE TRASLADOS Y COMUNICACIONES
+443010000000,Pasajes y transporte
+443010100000,Pasajes y transporte
+443020000000,"Teléfonos, telex, fax"
+443020100000,"Teléfonos, telex, fax"
+445000000000,IMPUESTOS Y  CONTRIBUCIONES
+445010000000,Impuestos municipales
+445010100000,Impuestos municipales
+445990000000,Otros impuestos y contribuciones
+445990100000,Otros impuestos y contribuciones
+445990200000,"Otros impuestos y contribuciones, mon ext us $"
+446000000000,MANTENIMIENTO Y REPARACIONES
+446010000000,Mantenimiento y reparaciones para bienes de uso
+446010100000,Mantenimiento y reparaciones para bienes de uso
+447000000000,DEPRECIACIÓN Y DESVALORIZACIÓN DE BIENES DE USO
+447020000000,Depreciación de mobiliario y equipos
+447020100000,Depreciación de mobiliario y equipos
+448000000000,AMORTIZACIÓN DE GASTOS DIFERIDOS
+448030000000,Amortización de software
+448030100000,Amortización de software
+448060000000,Amortización de otros gastos diferidos
+448060100000,Amortización de otros gastos diferidos
+449000000000,OTROS GASTOS GENERALES Y ADMINISTRATIVOS
+449010000000,"Agua, electricidad y gas"
+449010100000,"Agua, electricidad y gas"
+449020000000,Alquiler de bienes 
+449020100000,Alquiler de bienes 
+449050000000,Papelería y efectos de escritorio
+449050100000,Papelería y efectos de escritorio
+449060000000,Materiales y útiles de aseo
+449060100000,Materiales y útiles de aseo
+449090000000,Gastos legales
+449090100000,Gastos legales
+449100000000,Suscripciones
+449100100000,Suscripciones
+449110000000,Propaganda y publicidad
+449110100000,Propaganda y publicidad
+449150000000,Aportes a otras instituciones
+449150100000,Aportes a otras instituciones
+449990000000,Gastos generales diversos
+449990100000,Gastos generales diversos
+500000000000,INGRESOS
+510000000000,INGRESOS FINANCIEROS
+512000000000,INGRESOS POR INVERSIONES EN TÍTULOS VALORES
+512010000000,Rendimientos por inversiones en títulos valores para negociar
+512010100000,Rendimientos por inversiones en títulos valores para negociar
+512010120000,Dividendos ganados sobre acciones de otras instituciones objeto de oferta pública. Portafolio para Comercialización de Acciones
+512020000000,Rendimientos por inversiones en títulos valores disponibles para la venta
+512020200000,"Rendimientos por inversiones en títulos valores disponibles para la venta, en Mon Ext  US $"
+512020211000,"Rendimientos por obligaciones emitidas por empresas privadas distintas a BANCOS y EAPs del país. Portafolio “PIC”, en Mon Ext  US $"
+530000000000,OTROS INGRESOS OPERATIVOS
+531000000000,COMISIONES POR SERVICIOS
+531070000000,Comisiones por servicios 
+531070100000,Comisiones por servicios 
+531070181000,Comisiones por servicios bursátiles 
+531070181010,BANCOS del país. Comisiones por servicios bursátiles 
+531070181050,Otras personas naturales o jurídicas. Comisiones por servicios bursátiles 
+531840000000,Comisiones por estructuración y colocación 
+531840100000,Comisiones por estructuración y colocación 
+531840185000,Comisiones por estructuración y colocación de emisiones de títulos valores
+532000000000,DIFERENCIAS EN CAMBIO
+532980000000,Diferencias en cambio
+532980200000,Diferencias en cambio
+532980201000,Diferencias en cambio  por disponibilidades
+534000000000,OTROS INGRESOS POR VENTA DE VALORES
+534010000000,"Ganancia en venta de títulos valores de deuda. Portafolio ""PIC"
+534010100000,"Ganancia en venta de títulos valores de deuda. Portafolio ""PIC"
+534010200000,"Ganancia en venta de títulos valores de deuda. Portafolio ""PIC, mon ext US $"
+534020000000,Ganancia en venta de acciones. Portafolio para Comercialización de Acciones
+534020100000,Ganancia en venta de acciones. Portafolio para Comercialización de Acciones
+534020101000,Ganancia en venta de acciones. Portafolio para Comercialización de Acciones
+540000000000,INGRESOS EXTRAORDINARIOS
+541000000000,INGRESOS EXTRAORDINARIOS
+541990000000,Otros ingresos extraordinarios
+541990100000,Otros ingresos extraordinarios
+600000000000,CONTINGENTES
+610000000000,CUENTAS CONTINGENTES DEUDORAS
+617000000000,"DERECHOS POR OPERACIONES SPOT, FORWARD Y DE FUTUROS DE DIVISAS Y DE TÍTULOS VALORES"
+617800000000,Derechos por compra venta spot de títulos valores
+617800100000,Derechos por compra venta spot de títulos valores
+617800101000,Derechos por compra  spot de títulos valores
+617800101160,Derechos por compra spot de títulos valores de deuda con personas naturales. Portafolio “PIC”
+617800101161,Derechos por compra spot de títulos valores de deuda con personas naturales. Portafolio “PIC”
+617800101170,Derechos por compra spot de acciones con Bolsas de Valores. Portafolio para Comercialización de Acciones
+617800101171,Derechos por compra spot de acciones con Bolsas de Valores. Portafolio para Comercialización de Acciones
+617800102000,Derechos por venta spot de títulos valores 
+617800102140,Derechos por venta spot de títulos valores de deuda con sociedades de corretaje. Portafolio “PIC”
+617800102141,Derechos por venta spot de títulos valores de deuda con sociedades de corretaje. Portafolio “PIC”
+617800102150,Derechos por venta spot de títulos valores de deuda con otras personas jurídicas. Portafolio “PIC”
+617800102151,Derechos por venta spot de títulos valores de deuda con otras personas jurídicas. Portafolio “PIC”
+617800102160,Derechos por venta spot de títulos valores de deuda con personas naturales. Portafolio “PIC”
+617800102161,Derechos por venta spot de títulos valores de deuda con personas naturales. Portafolio “PIC”
+617800102170,Derechos por venta spot de acciones con Bolsas de Valores. Portafolio para Comercialización de Acciones
+617800102171,Derechos por venta spot de acciones con Bolsas de Valores. Portafolio para Comercialización de Acciones
+617800102200,Derechos por venta spot de acciones con otras personas jurídicas. Portafolio para Comercialización de Acciones
+617800102201,Derechos por venta spot de acciones con otras personas jurídicas. Portafolio para Comercialización de Acciones
+617800102210,Derechos por venta spot de acciones con personas naturales. Portafolio para Comercialización de Acciones
+617800102211,Derechos por venta spot de acciones con personas naturales. Portafolio para Comercialización de Acciones
+620000000000,CUENTAS CONTINGENTES ACREEDORAS
+627000000000,"RESPONSABILIDADES POR OPERACIONES SPOT, FORWARD Y DE FUTUROS DE DIVISAS Y DE TÍTULOS VALORES "
+627800000000,Responsabilidades por compra venta spot de títulos
+627800100000,Responsabilidades por compra venta spot de títulos
+627800101000,Responsabilidades por compra spot de títulos
+627800101020,Responsabilidades por compra spot de títulos. Portafolio “PIC”
+627800101021,Responsabilidades por compra spot de títulos. Portafolio “PIC”
+627800101040,Responsabilidades por compra spot de acciones. Portafolio para Comercialización de Acciones
+627800101041,Responsabilidades por compra spot de acciones. Portafolio para Comercialización de Acciones
+627800102000,Responsabilidades por venta spot de títulos
+627800102020,Responsabilidades por venta spot de títulos. Portafolio “PIC”
+627800102021,Responsabilidades por venta spot de títulos. Portafolio “PIC”
+627800102040,Responsabilidades por venta spot de acciones. Portafolio para Comercialización de Acciones
+627800102041,Responsabilidades por venta spot de acciones. Portafolio para Comercialización de Acciones
+700000000000,ENCARGOS DE CONFIANZA
+760000000000,ENCARGOS DE CONFIANZA
+762000000000,ENCARGOS DE CONFIANZA
+762800000000,Cartera administrada
+762800100000,Cartera administrada
+762810000000,Custodia de valores
+762810100000,Custodia de valores
+762810200000,"Custodia de valores,  en US$"
+770000000000,RESPONSABILIDADES POR ENCARGOS DE CONFIANZA
+772000000000,RESPONSABILIDADES POR ENCARGOS DE CONFIANZA
+772800000000,Responsabilidades por cartera administrada
+7728001000000,Responsabilidades por cartera administrada
+772810000000,Responsabilidades por custodia de valores
+772810100000,Responsabilidades por custodia de valores
+772810200000,"Responsabilidades por custodia de valores, en US$"
+800000000000,OTRAS CUENTAS DE ORDEN
+810000000000,OTRAS CUENTAS DE ORDEN DEUDORAS
+819000000000,OTRAS CUENTAS DE REGISTRO
+819800000000,Fianzas Recibidas
+819800100000,Fianzas Recibidas
+820000000000,OTRAS CUENTAS DE ORDEN ACREEDORAS
+829000000000,PER CONTRA OTRAS CUENTAS DE ORDEN ACREEDORAS
+829800000000,Per Contra Fianzas Recibidas
+829800100000,Per Contra Fianzas Recibidas

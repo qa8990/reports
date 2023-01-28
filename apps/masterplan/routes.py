@@ -5,7 +5,8 @@ from apps import db, props, sql_scripts
 from sqlalchemy import select
 from apps.masterplan.forms import MasterPlanForm
 from apps.masterplan.models import MasterPlan
-from apps.dbManager import create_new_company, create_new_account
+from apps.dbManager import create_new_company, create_new_account, clean_master_plan, upload_master_plan
+
 
 @blueprint.route('/')
 def route_default():
@@ -18,12 +19,14 @@ def route_default():
 @blueprint.route('/masterplan', methods=['GET'])
 def masterplan():
     print('----------------------- ### Master Plan route ####  ----------------')
-      
-    account = MasterPlan.get_all()
+    #print("page nbr :", page_nbr, type(int(page_nbr)))
+    #page_nbr= int(page_nbr)
+    page = request.args.get('page', 1, type=int)
+    pagination = MasterPlan.get_all(page)
 
     # Check the password
-    if account :
-        return render_template('masterplan/masterplan.html', masterplan=account)
+    if pagination :
+        return render_template('masterplan/masterplan.html', pagination=pagination, page = page)
 
 
 @blueprint.route('/addaccount', methods=['GET', 'POST'])
@@ -46,3 +49,15 @@ def addaccount():
         #form.company_type_id.choices = [(g.company_type_id, g.description) for g in companyTypes]
         new_account = create_new_account(account)
         return redirect(url_for('masterplan_blueprint.masterplan'))    
+
+
+@blueprint.route('/viewplan', methods=['GET'])
+def viewplan():
+    print('----------------------- ### Master Plan route ####  ----------------')
+    #print("page nbr :", page_nbr, type(int(page_nbr)))
+    #page_nbr= int(page_nbr)
+    #upload_master_plan()
+    clean_master_plan()  
+    upload_master_plan()
+    # Check the password
+    return  redirect(url_for('masterplan_blueprint.masterplan'))    
