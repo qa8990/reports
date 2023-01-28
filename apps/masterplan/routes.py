@@ -61,3 +61,18 @@ def viewplan():
     upload_master_plan()
     # Check the password
     return  redirect(url_for('masterplan_blueprint.masterplan'))    
+
+@blueprint.route('/editaccounting/<id>', methods=['GET', 'POST'])    
+def editaccounting(id):
+    form = MasterPlanForm()
+    if request.method == 'GET':
+        plan = MasterPlan.get_account_byId(id)
+        form.account_number.data = plan[0][1]
+        form.account_name.data = plan[0][2]
+        print("plan --", plan)
+        print('edit-plan', form.data, type(form))
+        return render_template('masterplan/accounting.html',  id=id, form=form)
+
+    if form.is_submitted and request.method == 'POST':
+        plan = MasterPlan.update_account_byId(form, id)
+        return redirect(url_for('masterplan_blueprint.masterplan'))
