@@ -55,7 +55,7 @@ class MasterPlan(db.Model):
         return page1
 
     def get_account_byId(id):
-        account = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name)).filter_by(id=id).all()
+        account = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name).filter_by(id=id)).all()
         print('get-by id ', account, type(account))
         # Companies.query.all()
         return account
@@ -63,7 +63,7 @@ class MasterPlan(db.Model):
 
     def update_account_byId(self, id):
         print("estoy actualizando la company :", type(self.data) )
-        statement = 'UPDATE master_plan SET account_number = :parm1, account_name = :parm2 where id = :parm5'
+        statement = 'UPDATE master_plan SET account_number = :parm1, account_name = :parm2 where id = :parm3'
         account = db.session.execute(statement, {'parm1' : self.account_number.data, 'parm2' : self.account_name.data, 'parm3' : id, })
         db.session.commit()
         return 
