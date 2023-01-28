@@ -1,0 +1,11 @@
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('1', '10000MM0000C', 'ACTIVO', '1');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('2', '11000MM0000C', 'DISPONIBILIDADES', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('3', '11100MM0000C', 'EFECTIVO', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('4', '11101MM0000C', 'Billetes y monedas nacionales', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('5', '11102MM0000C', 'Billetes y monedas extranjeras', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('6', '11104MM0000C', 'Certificados de tenencia de oro', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('7', '11300MM0000C', 'BANCOS, ENTIDADES DE AHORRO Y PRÉSTAMO Y OTRAS INSTITUCIONES FINANCIERAS DEL PAIS', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('8', '11301MM0000C', 'Depósitos en bancos del pais', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('9', '11301MM0100C', 'Depósitos en cuentas corrientes. Bancos del país', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('10', '11301MM0200C', 'Depósitos en cuentas de ahorro. Bancos del pais', '');
+INSERT INTO "main"."master_plan" ("id", "account_number", "account_name", "status_id") VALUES ('11', '11301MM0300C', 'Depósitos en F.A.L. Bancos del pais', '');

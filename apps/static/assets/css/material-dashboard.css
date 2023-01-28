@@ -4017,13 +4017,13 @@ textarea.form-control-lg {
 
 .pagination {
   display: flex;
-  padding-left: 0;
+  padding-left: 0.25rem;
   list-style: none; }
 
 .page-link {
   position: relative;
   display: block;
-  color: #e91e63;
+  color: #6c757d;
   background-color: #fff;
   border: 1px solid #dee2e6;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -4032,15 +4032,15 @@ textarea.form-control-lg {
       transition: none; } }
   .page-link:hover {
     z-index: 2;
-    color: #e91e63;
+    color: #6c757d;
     background-color: #f0f2f5;
     border-color: #dee2e6; }
   .page-link:focus {
     z-index: 3;
-    color: #e91e63;
+    color: #6c757d;
     background-color: #f0f2f5;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25); }
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25); }
 
 .page-item:not(:first-child) .page-link {
   margin-left: -1px; }
@@ -15392,10 +15392,10 @@ hr.horizontal {
   color: #7b809a;
   padding: 0;
   margin: 0 3px;
-  border-radius: 50% !important;
-  width: 36px;
+  border-radius: 20% !important;
+  width: 50px;
   height: 36px;
-  font-size: 0.875rem; }
+  font-size: 0.68rem; }
 
 .pagination-lg .page-item .page-link,
 .pagination-lg .page-item span {
