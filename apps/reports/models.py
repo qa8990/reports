@@ -6,16 +6,17 @@ from apps.organizations.util import get_current_date_time
 from datetime import time, datetime
 from sqlalchemy.orm import relationship, backref, query
 from sqlalchemy import func, select
+from apps.organizations.models import Status
 
 
 
-class MasterPlan(db.Model):
+class ReportsForma(db.Model):
 
-    __tablename__ = 'master_plan'
+    __tablename__ = 'report_forma'
 
-    id = db.Column(db.Integer, primary_key=True)
-    account_number = db.Column(db.String(20))
-    account_name = db.Column(db.String(200))
+    forma_code = db.Column(db.String(1), primary_key=True)
+    forma_name = db.Column(db.String(60))
+    forma_description = db.Column(db.String(200))
     status_id = db.Column(db.Integer, db.ForeignKey('status.id'), nullable=True )
 
     def __init__(self, **kwargs):
@@ -39,53 +40,38 @@ class MasterPlan(db.Model):
             ### comparar como lo usasn en authentication
 
     def __repr__(self):
-        return str(self.account_name)
+        return str(self.forma_name)
 
 
-    def get_all(page_nbr):
-        accounts = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name)).all()
-        page1 = MasterPlan.query.paginate(page=page_nbr, per_page=10)
-        print("page1", page1.items)
-        print('get-all ', page1)
-        return page1
+    def get_all():
+        forma = db.session.execute(select(ReportsForma.forma_code, ReportsForma.forma_name, ReportsForma.forma_description, Status.description).join(Status.estatus)).all()
+        #page1 = MasterPlan.query.paginate(page=page_nbr, per_page=10)
+        #print("page1", page1.items)
+        print('get-all forma ## ', forma)
+        return forma
 
-    def get_alls():
-        accounts = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name)).all()
-        page1 = MasterPlan.query.all()
-        return page1
 
-    def get_account_byId(id):
-        account = db.session.execute(select(MasterPlan.id, MasterPlan.account_number, MasterPlan.account_name).filter_by(id=id)).all()
-        print('get-by id ', account, type(account))
+    def get_forma_byCode(code):
+        forma = db.session.execute(select(ReportsForma.forma_code, ReportsForma.forma_name, ReportsForma.forma_description).filter_by(forma_code=code)).all()
+        #print('get-by id ', account, type(account))
         # Companies.query.all()
-        return account
+        return forma
 
 
-    def update_account_byId(self, id):
+    def update_forma_byCode(self, id):
         print("estoy actualizando la company :", type(self.data) )
         statement = 'UPDATE master_plan SET account_number = :parm1, account_name = :parm2 where id = :parm3'
         account = db.session.execute(statement, {'parm1' : self.account_number.data, 'parm2' : self.account_name.data, 'parm3' : id, })
         db.session.commit()
         return 
     
-    def create_account(account):
-        print("estoy creando la cuenat :", type(account) )
-        db.session.add(MasterPlan(account))
+    def create_forma(forma):
+        print("estoy creando la cuenat :", type(forma) )
+        db.session.add(ReportsForma(forma))
         db.session.commit()
         return 
         
 
-def masterplan_loader(id):
-    print('***** en el loader de organization ********')
-    return MasterPlan.query.filter_by(id=id).first()
 
-
-
-def request_loader(request):
-    id = request.form.get('id')
-    print('REQUES LOADER de Companies ^^^^^^^<..> <..> <..> <..> <<..>>  --> ',id)
-    account = MasterPlan.query.filter_by(id=id).first()
-    print('#### User >', account)
-    return MasterPlan if account else None
 
 

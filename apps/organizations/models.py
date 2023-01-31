@@ -17,7 +17,7 @@ class Companies(db.Model):
     company_type_id = db.Column(db.Integer, db.ForeignKey("company_types.company_type_id"))
     #company_type_id = relationship("CompaniesTypes", lazy='joined', backref=backref("type"))
     created_at = db.Column(db.String(20))
-    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'), nullable=True )
+    status_id = db.Column(db.Integer, db.ForeignKey('status.id'), nullable=True )
 
     def __init__(self, **kwargs):
         print("Registrando un companies  !!!!!!!!!!", self, type(self))
@@ -47,7 +47,11 @@ class Companies(db.Model):
 
 
     def get_all():
-        companies = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
+        #companies = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at, Status.description).join(CompaniesTypes.type).join(Status.estatus)).all()
+        #companies = db.session.query(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at, Status.description).join(CompaniesTypes.type).join(Status.estatus)).all()
+       #subq = db.session.query(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
+        statement = "SELECT companies.company_id, companies.name, companies.description, company_types.description AS description_1, company_types.image, companies.created_at, status.description AS description_2 FROM company_types JOIN companies ON company_types.company_type_id = companies.company_type_id JOIN  status  ON status.id = companies.status_id"
+        companies = db.session.execute(statement)
         print('get-all ', companies)
         # Companies.query.all()
         return companies
@@ -127,9 +131,10 @@ class Status(db.Model):
     
     __tablename__ = 'status'
 
-    status_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(10), unique=True)
     description = db.Column(db.String(64))
+    estatus = db.relationship("ReportsForma", backref="estatus", lazy=True)
 
     def __init__(self, **kwargs):
         for property, value in kwargs.items():
