@@ -65,7 +65,7 @@ class Companies(db.Model):
     def get_last_company_added():
         print('last companie added')
         max_date = db.session.query(func.max(Companies.created_at)).scalar()
-        last_company_added = Companies.query.filter_by(created_at = max_date).one()
+        last_company_added = Companies.query.filter_by(created_at = max_date).first()
         #db.session.query(Companies).filter(Companies.created_at == max_date).all()
         print(max_date)
         print('last-company-date :::::>',last_company_added)
@@ -106,7 +106,7 @@ class CompaniesTypes(db.Model):
     company_type_id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String)
     description = db.Column(db.String(64), unique=True)
-    status_id = db.Column(db.Integer, db.ForeignKey("status.status_id"), nullable=False)
+    status_id = db.Column(db.Integer, db.ForeignKey("status.id"), nullable=False)
     image = db.Column(db.String(64))
     type = db.relationship("Companies", backref="type", lazy=True)
     #products = db.relationship('Product', backref='category', lazy=True)

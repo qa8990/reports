@@ -54,28 +54,28 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div>
-                            <img src="/static/assets/img/logos/avatars/{{items[4]}}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            <img src="/static/assets/img/logos/avatars/{{items['company_type']['image']}}" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                             
                           </div>
                           <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm">{{items[0]}}</h6>
-                            <p class="text-xs text-secondary mb-0">{{items[1]}}</p>
+                            <h6 class="mb-0 text-sm">{{items['company_id']}}</h6>
+                            <p class="text-xs text-secondary mb-0">{{items['name']}}</p>
                           </div>
                         </div>
                       </td>
                   
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{items[3]}}</p>
-                      <p class="text-xs text-secondary mb-0" >{{items[2]}}</p>
+                      <p class="text-xs font-weight-bold mb-0">{{items['description']}}</p>
+                      <p class="text-xs text-secondary mb-0" ></p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <span class="badge badge-sm bg-gradient-success">Activo</span>
+                      <span class="badge badge-sm  {{items['company_estatus']['bg_image']}}">{{items['company_estatus']['description']}}</span>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{items[5]}}</span>
+                      <span class="text-secondary text-xs font-weight-bold"></span>
                     </td>
                     <td class="align-middle">
-                      <a href="{{ url_for('organizations_blueprint.edit_company2', id = items[0]) }}" class="text-secondary font-weight-bold text-xs"  data-toggle="modal" data-target="#exampleModal{{items[0]}}" data-original-title="Edit user"  >
+                      <a href="{{ url_for('organizations_blueprint.edit_company2', id = items['company_id']) }}" class="text-secondary font-weight-bold text-xs"  data-toggle="modal" data-target="#exampleModal{{items[0]}}" data-original-title="Edit user"  >
                         Editar
                       </a>
 

@@ -6,11 +6,14 @@ Copyright (c) 2019 - present AppSeed.us
 import os
 
 from flask import Flask
-from flask_modals import Modal
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy, Pagination
 from importlib import import_module
 from apps.utils.stocks_properties import read_properties_file
+
+from fastapi import FastAPI
+import uvicorn
+
 
 
 db = SQLAlchemy()
@@ -18,6 +21,7 @@ login_manager = LoginManager()
 print('El path de la aplicacion es : ',__path__)
 props = read_properties_file('finanzas.properties')
 sql_scripts = read_properties_file('sql_scripts.properties')
+
 
 
 def register_extensions(app):
@@ -62,7 +66,7 @@ def configure_database(app):
 def create_app(config):
     print('4 Create app')
     app = Flask(__name__)
-    modal = Modal(app)
+    #uvicorn.run("sql_app.main:api", host='127.0.0.1', port=8000, reload=True)
     app.config.from_object(config)
     register_extensions(app)
     register_blueprints(app)

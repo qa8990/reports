@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, jsonify, Response
 from flask_modals import render_template_modal, response
 from apps.organizations import blueprint
 from apps import db, props, sql_scripts
@@ -7,19 +7,35 @@ from apps.organizations.forms import CreateOrganizationForm, OrganizationForm
 from apps.organizations.models import Companies, CompaniesTypes
 from apps.dbManager import create_new_company
 
-from apps.organizations.util import get_current_date_time
+from pathlib import Path
+
+from apps import create_app
+from fastapi import FastAPI
+from starlette.responses import HTMLResponse
+from starlette.requests import Request
+from starlette.templating import Jinja2Templates 
+from starlette.middleware.wsgi import WSGIMiddleware
+
+from apps.organizations.util import get_current_date_time, get_json_data
 
 ACTIVO = 1
 
-@blueprint.route('/')
-def route_default():
-    return redirect(url_for('organizations_blueprint.allcompanies'))
-
+templates = Jinja2Templates(directory="templates")
+ALL_PARMS = "?skip=0&limit=100"
 
 # Organization
 
-@blueprint.route('/allcompanies', methods=['GET'])
-def allcompanies():
+@blueprint.route('/companies', methods=['GET'])
+def companies():
+    print('/Allcompanies ', request.path)
+
+    response = get_json_data(request.path, ALL_PARMS)
+
+    if response :
+        return render_template('organizations/companies.html', company=response)
+    
+@blueprint.route('/allcompanies2', methods=['GET'])
+def allcompanies2():
     print('@@@ ### Allcompanies route ####  @@@')
       
     # Other style
@@ -32,6 +48,16 @@ def allcompanies():
     # Check the password
     if company_obj :
         return render_template('organizations/companies.html', company=company_obj)
+
+@blueprint.route('/editcompanies', methods=['GET'])
+def companies():
+    print('/Allcompanies ', request.path)
+
+    response = get_json_data(request.path, ALL_PARMS)
+
+    if response :
+        return render_template('organizations/companies.html', company=response)
+    
 
 @blueprint.route('/edit_company/<id>', methods=['GET', 'POST'])
 def edit_company(id):

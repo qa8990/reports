@@ -1,13 +1,10 @@
 # -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
 from apps.home import blueprint
-from flask import render_template, request, session
+from flask import render_template, request, session, url_for, jsonify, Response
 from flask_login import login_required
 from jinja2 import TemplateNotFound
-from apps.organizations.util import get_last_company_added
+from apps.organizations.util import get_current_date_time, get_json_data
 from apps.organizations.models import Companies
 from apps import db
 
@@ -15,10 +12,13 @@ from apps import db
 @blueprint.route('/index')
 @login_required
 def index():
-    last_data = Companies.get_last_company_added()
-    print(last_data)
+    ruta = "/last-company"
+    response = get_json_data(ruta, None)
 
-    return render_template('home/index.html', segment='index', company=last_data)
+    #last_data = Companies.get_last_company_added()
+    print("last company : >", response)
+
+    return render_template('home/index.html', segment='index', company=response)
 
 
 @blueprint.route('/<template>')

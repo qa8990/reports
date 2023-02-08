@@ -10,6 +10,8 @@ from   sys import exit
 
 from apps.config import config_dict
 from apps import create_app, db
+import uvicorn
+from fastapi import FastAPI
 
 # WARNING: Don't run with debug turned on in production!
 DEBUG = (os.getenv('DEBUG', 'False') == 'True')
@@ -26,6 +28,7 @@ except KeyError:
     exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
 
 app = create_app(app_config)
+api = FastAPI()
 Migrate(app, db)
 
 if not DEBUG:
@@ -38,4 +41,9 @@ if DEBUG:
     app.logger.info('ASSETS_ROOT      = ' + app_config.ASSETS_ROOT )
 
 if __name__ == "__main__":
+    print("running api")
+    uvicorn.run("sql_app.main:api", host='127.0.0.1', port=8000)
+    print("running app")
     app.run()
+    #uvicorn.run(api, host='127.0.0.1', port=8000, )
+
