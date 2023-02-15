@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func, select, update
+from fastapi_pagination import LimitOffsetPage, add_pagination, paginate
 
 from . import models, schemas
 
@@ -57,15 +58,13 @@ def add_company(db: Session, company: schemas.CompanyCreate):
     return company_data
 
 def upd_company(db: Session, company_id: int, company: schemas.CompanyCreate):
-    print("en el upd-company-data", company_id)
+
     company_data = get_company(db, company_id)
     company_data.name = company.name
     company_data.description = company.description
     company_data.code = company.code
     company_data.created_at = company_data.created_at
     company_data.status_id = company_data.status_id
-    print(company_data)
-    print("compnay data --> desde el endpoont" ,company)
     db.add(company_data)
     db.commit()
 
@@ -83,3 +82,12 @@ def get_company_type(db: Session, company_type_id: int):
     print("el email es ", company_type_id)
     return db.query(models.CompanyTypes).filter(models.CompanyTypes.company_type_id == company_type_id).first()
 
+
+# Master Plan
+# Get MAsterPlan
+def get_master_plan(db: Session, skip: int, limit: int ):
+    #accounts = db.query(models.MasterPlan).offset(skip).limit(limit).all()
+    #accounts = db.query(models.MasterPlan).all()
+    #print("ACCOUNT ----->>> ",accounts)
+    return db.query(models.MasterPlan).all()
+#db.query(models.MasterPlan).offset(skip).limit(limit).all()

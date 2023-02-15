@@ -4,6 +4,18 @@ from enum import Enum
 
 from .database import Base
 
+class Status(Base):
+    __tablename__ = "status"
+
+    id = Column(Integer, primary_key=True, index=True)
+    code = Column(String (1), unique = True, index = True)
+    description = Column( String (64))
+    bg_image = Column(String(200))
+
+    usuario = relationship("User", back_populates="estatus")
+    estatus_2 = relationship("Companies", back_populates="company_estatus")
+    estatus_3 = relationship("MasterPlan", back_populates="account_estatus")
+
 class User(Base):
     __tablename__ = "Users"
 
@@ -15,18 +27,6 @@ class User(Base):
 
     estatus = relationship("Status", back_populates="usuario")
     
-
-class Status(Base):
-    __tablename__ = "status"
-
-    id = Column(Integer, primary_key=True, index=True)
-    code = Column(String (1), unique = True, index = True)
-    description = Column( String (64))
-    bg_image = Column(String(200))
-
-    usuario = relationship("User", back_populates="estatus")
-    estatus_2 = relationship("Companies", back_populates="company_estatus")
-
 class Companies(Base):
     __tablename__ = "companies"
 
@@ -53,8 +53,14 @@ class CompanyTypes(Base):
 
     type = relationship("Companies", back_populates="company_type")
 
-class Messages(Enum):
-    SUCCESS = "Procesado Existosamente"
-    NOTSUCCES = "No Procesado"
-    VALID = "Valid0"
-    NOTVALID = "No Valido"
+
+class MasterPlan(Base):
+    __tablename__ = "master_plan"
+
+    id = Column(Integer, primary_key=True)
+    account_number = Column(String(30), unique=True)
+    account_name = Column(String(240))
+    status_id = Column(Integer, ForeignKey("status.id"))
+
+    account_estatus = relationship("Status", back_populates="estatus_3")
+

@@ -80,7 +80,6 @@ def masterplan_loader(id):
     return MasterPlan.query.filter_by(id=id).first()
 
 
-
 def request_loader(request):
     id = request.form.get('id')
     print('REQUES LOADER de Companies ^^^^^^^<..> <..> <..> <..> <<..>>  --> ',id)

@@ -45,6 +45,8 @@ WTForms==              3.0.0
 xxhash==               3.2.0
 zipp==                 3.11.0
 pydantic==             1.8
+#fastapi-pagination==   0.10.0
 uvicorn==              0.20.0
+
 # flask_mysqldb
 # psycopg2-binary

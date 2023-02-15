@@ -4,7 +4,7 @@ from apps.home import blueprint
 from flask import render_template, request, session, url_for, jsonify, Response
 from flask_login import login_required
 from jinja2 import TemplateNotFound
-from apps.organizations.util import get_current_date_time, get_json_data
+from apps.organizations.util import get_json_data
 from apps.organizations.models import Companies
 from apps import db
 
@@ -13,10 +13,9 @@ from apps import db
 @login_required
 def index():
     ruta = "/last-company"
-    response = get_json_data(ruta, None)
-
-    #last_data = Companies.get_last_company_added()
-    print("last company : >", response)
+    apiMethod = "GET"
+    json_data = {}
+    response = get_json_data(apiMethod, ruta, None, None, json_data)
 
     return render_template('home/index.html', segment='index', company=response)
 

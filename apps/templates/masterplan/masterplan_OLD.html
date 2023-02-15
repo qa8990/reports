@@ -1,0 +1,158 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+{% block modal %} {% endblock %}
+  <div class="container">
+    {% block page_content %} 
+
+    {% endblock %}
+  </div>
+ 
+  <div class="container-fluid py-4" >
+    
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+
+            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+              <h3 class="text-white text-capitalize ps-3">
+                <i class="material-icons opacity-10">account_balance</i>
+                  Plan de Cuentas
+              </h3>
+            </div>
+          </div>
+
+          <div class="card-body px-2 pb-2">    
+
+            <div class="col-12 align-items-center" align="right" >
+              <a class="btn bg-gradient-dark mb-0" href="{{ url_for('masterplan_blueprint.addaccount') }}">
+              <i class="material-icons text-sm ">add</i>&nbsp;&nbsp;Agregar Cuenta Maestra</a>
+              <a class="btn bg-gradient-success mb-0" href="{{ url_for('masterplan_blueprint.viewplan') }}">
+                <i class="material-icons text-sm ">cached</i>&nbsp;&nbsp;Inicializar Plan</a></div>
+
+            <div class="table-responsive p-0">
+
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nro de Cuenta</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Cuenta</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Estatus</th>
+                   
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+
+                <!-- Pagination 2-->
+                <nav aria-label="Page navigation example">
+                  <div class="pagination">
+                    {% if pagination.has_prev %}
+                    
+                      <span class="page-item pagination text-xs">
+                        <a class='page-link' href="{{ url_for('masterplan_blueprint.masterplan', page=pagination.prev_num) }}">
+                          {{ '<<<' }} </a>
+                      </span>
+                      {% endif %}
+                
+                      {% for number in pagination.iter_pages() %}
+                      {% if pagination.page != number %}
+                      <span class="page-item pagination text-xs">
+                        <a class='page-link' href="{{ url_for('masterplan_blueprint.masterplan', page=number) }}">
+                          {{ number }}
+                        </a>
+                      </span>
+                      {% else %}
+                        <ul class="page-item pagination text-xs"><span class='page-link'>{{ number }}</span></ul>
+                      {% endif %}
+                      {% endfor %}
+                
+                      {% if pagination.has_next %}
+                      <span class="page-item pagination text-xs">
+                        
+                        <a class='page-link' href="{{ url_for('masterplan_blueprint.masterplan', page=pagination.next_num) }}">
+                          {{ '>>>' }}
+                        </a>
+                      </span>
+                      {% endif %}
+                    
+                  </div>
+                </nav>
+                <!-- end pag 2-->
+                <tbody>
+
+                  {% for page in pagination.items %}
+                 
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="/static/assets/img/logos/avatars/icons8-bank-40.png " class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">{{page.id}}</h6>
+                            <p class="text-xs text-secondary mb-0">{{page.account_number}}</p>
+                          </div>
+                        </div>
+                      </td>
+                  
+                    <td>
+                      <p class="text-xs text-secondary mb-0" >{{page.account_name}}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="badge badge-sm bg-gradient-success">Activo</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold"></span>
+                    </td>
+                    <td class="align-middle">
+                      <a href="{{ url_for('masterplan_blueprint.editaccounting', id = page.id) }}" class="text-secondary font-weight-bold text-xs"   data-original-title="Edit user"  >
+                        Editar
+                      </a>
+
+                    </td>
+                  </tr>
+                  
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+            </div>
+            <!-- Paginacion -->
+
+            <!-- end paginacion -->
+          </div>
+          
+          </div>
+      </div>
+    </div>
+
+    <footer class="footer py-4  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              made with <i class="fa fa-heart"></i> by
+              MM Finance</a>
+              for a better web.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block script %} {% endblock %}

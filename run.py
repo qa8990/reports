@@ -41,9 +41,9 @@ if DEBUG:
     app.logger.info('ASSETS_ROOT      = ' + app_config.ASSETS_ROOT )
 
 if __name__ == "__main__":
-    print("running api")
-    uvicorn.run("sql_app.main:api", host='127.0.0.1', port=8000)
-    print("running app")
+    #print("******************* running api *******************")
+    #uvicorn.run("sql_app.main:api", host='127.0.0.1', port=8000)
+    #print("running app")
     app.run()
     #uvicorn.run(api, host='127.0.0.1', port=8000, )
 

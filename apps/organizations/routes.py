@@ -4,7 +4,8 @@ from apps.organizations import blueprint
 from apps import db, props, sql_scripts
 from sqlalchemy import select
 from apps.organizations.forms import CreateOrganizationForm, OrganizationForm
-from apps.organizations.models import Companies, CompaniesTypes
+#from apps.organizations.models import Companies, CompaniesTypes
+from sql_app.models import Companies, CompanyTypes
 from apps.dbManager import create_new_company
 
 from pathlib import Path
@@ -16,45 +17,55 @@ from starlette.requests import Request
 from starlette.templating import Jinja2Templates 
 from starlette.middleware.wsgi import WSGIMiddleware
 
-from apps.organizations.util import get_current_date_time, get_json_data
+from apps.organizations.util import get_current_date_time, get_json_data, format_json_object
 
 ACTIVO = 1
 
 templates = Jinja2Templates(directory="templates")
-ALL_PARMS = "?skip=0&limit=100"
-
+#ALL_PARMS = "?skip=0&limit=100"
+API_GET = "GET"
+API_POST = "POST"
+API_PUT = "PUT"
+skip = '1'
+limit = '20'
 # Organization
 
 @blueprint.route('/companies', methods=['GET'])
-def companies():
-    print('/Allcompanies ', request.path)
+def get_all_companies():
+    json_data = {}
 
-    response = get_json_data(request.path, ALL_PARMS)
-
+    response = get_json_data(API_GET, request.path, skip, limit, json_data)
     if response :
         return render_template('organizations/companies.html', company=response)
-    
-@blueprint.route('/allcompanies2', methods=['GET'])
-def allcompanies2():
-    print('@@@ ### Allcompanies route ####  @@@')
-      
-    # Other style
-    #company = db.session.execute(select(Companies.company_id, Companies.name, Companies.description, CompaniesTypes.description, CompaniesTypes.image, Companies.created_at).join(CompaniesTypes.type)).all()
-    #company_obj = Companies.query.filter_by(status_id = ACTIVO).fetchall()
-    company_obj = Companies.get_all()
-    print('#2', company_obj, type(company_obj))  #devuelve un objeto Companies
-    print('@@@ ### Allcompanies route ####  @@@', company_obj, type(company_obj))
 
-    # Check the password
-    if company_obj :
-        return render_template('organizations/companies.html', company=company_obj)
 
-@blueprint.route('/editcompanies', methods=['GET'])
-def companies():
-    print('/Allcompanies ', request.path)
+@blueprint.route('/company/<id>', methods=['GET', 'POST'])
+def get_company_by_id(id):
 
-    response = get_json_data(request.path, ALL_PARMS)
+    json_data = {}
+    response = get_json_data(API_GET, request.path, None, json_data)
+    form = OrganizationForm()
+    form.name.data = response['name']
+    form.description.data = response['description']
+    form.code.data = response['code']
+    json_data = {}
+    companyTypes = get_json_data(API_GET, "/company-types", None, None, json_data)
+    form.company_type_id.choices = [(g['company_type_id'], g['description']) for g in companyTypes]
 
+    if request.method == 'GET':
+        return render_template('organizations/organization.html', company=response, form=form) 
+    if form.is_submitted and request.method == 'POST':
+        json_data = request.form.to_dict()
+        json_data = format_json_object(json_data, id)
+        response = get_json_data(API_PUT, request.path, None, None, json_data)
+        return redirect(url_for('organizations_blueprint.get_all_companies'))
+        
+
+@blueprint.route('/company/<id>', methods=['PUT'])
+def edit_company_by_id(id):
+    json_data = {}
+    response = get_json_data(API_PUT, request.path, None, None, json_data)
+    print("RESPONSE 2 <><><><>", type(response))
     if response :
         return render_template('organizations/companies.html', company=response)
     
@@ -82,11 +93,11 @@ def edit_company(id):
     render_template('organizations/modal.html', form=form)
 
 @blueprint.route('/edit_company2/<id>', methods=['GET', 'POST'])    
-def edit_company2(id):
+def edit_company22(id):
     form = OrganizationForm()
     if request.method == 'GET':
         company = Companies.get_company_byId(id)
-        companyTypes = CompaniesTypes.get_all_company_types()
+        companyTypes = CompanyTypes.get_all_company_types()
         form.name.data = company[0][1]
         form.description.data = company[0][2]
         form.code.data = company[0][6]
@@ -98,13 +109,31 @@ def edit_company2(id):
         company = Companies.update_company_byId(form, id)
         return redirect(url_for('organizations_blueprint.allcompanies'))
 
-@blueprint.route('/add_company', methods=['GET', 'POST'])    
+@blueprint.route('/company', methods=['GET','POST']) 
 def add_company():
+    json_data = {}
     form = CreateOrganizationForm(request.form)
-    companyTypes = CompaniesTypes.get_all_company_types()
+    companyTypes = get_json_data(API_GET, "/company-types", None, None, json_data)
+    form.company_type_id.choices = [(g['company_type_id'], g['description']) for g in companyTypes]
+
+    if request.method == 'GET':
+        return render_template('organizations/organization.html', form=form) 
+    if form.is_submitted and request.method == 'POST':
+        json_data = request.form.to_dict()
+        json_data = format_json_object(json_data, None)
+        print(json_data)
+        response = get_json_data(API_POST, request.path, None, None, json_data)
+        return redirect(url_for('organizations_blueprint.get_all_companies'))
+
+@blueprint.route('/add_company', methods=['GET', 'POST'])    
+def add_company_OLD():
+    print(" ------------------------------")
+    print(" -------- ADD COMPANY ---------")
+    form = CreateOrganizationForm(request.form)
+    companyTypes = CompanyTypes.get_all_company_types()
     if request.method == 'GET':
         company = Companies()
-        companyTypes = CompaniesTypes.get_all_company_types()
+        companyTypes = CompanyTypes.get_all_company_types()
         form.company_type_id.choices = [(g.company_type_id, g.description) for g in companyTypes]
         print('edit-company2', form.data)
         return render_template('organizations/organization.html',  form=form)
@@ -136,7 +165,7 @@ def editcompany(id):
 
         statement = 'SELECT  company_id, name, description, code, company_type_id, created_at FROM companies where company_id = :parm1'
         company = db.session.execute(statement, {'parm1' : comp_id}).fetchone()
-        companyTypes = CompaniesTypes.get_all_company_types()
+        companyTypes = CompanyTypes.get_all_company_types()
         
         #company_obj = Companies(company)
         print(companyTypes)
@@ -171,7 +200,7 @@ def addcompany():
     print("Estoy en add company -->")
     #company_form = OrganizationForm()
 
-    company_types = db.session.execute(select(CompaniesTypes.company_type_id, CompaniesTypes.code, CompaniesTypes.description).where(CompaniesTypes.status_id == 1)).all()
+    company_types = db.session.execute(select(CompanyTypes.company_type_id, CompanyTypes.code, CompanyTypes.description).where(CompanyTypes.status_id == 1)).all()
     #add_organization_form = CreateOrganizationForm(request.form)
     print('request ====0 // ', add_organization_form.data)
 

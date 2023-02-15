@@ -53,12 +53,6 @@ class CompanyBase(BaseModel):
     description: str
     company_type_id: int
 
-class CompanyCreate(CompanyBase):
-    code: str
-
-    class Config:
-        orm_mode = True
-
 class Companies(CompanyBase):
     code: str
     name: str
@@ -70,5 +64,20 @@ class Companies(CompanyBase):
     class Config:
         orm_mode = True
 
+class CompanyCreate(CompanyBase):
+    code: str
 
-    
+    class Config:
+        orm_mode = True
+        
+class MasterPlanBase(BaseModel):
+    id: int
+
+class MasterPlan(MasterPlanBase):
+    account_number: str
+    account_name: str
+    status_id: int
+    account_estatus: Union[Status, None] = None
+
+    class Config:
+        orm_mode = True

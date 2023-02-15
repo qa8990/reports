@@ -4,30 +4,60 @@ from apps.masterplan import blueprint
 from apps import db, props, sql_scripts
 from sqlalchemy import select
 from apps.masterplan.forms import MasterPlanForm
-from apps.masterplan.models import MasterPlan
-from apps.dbManager import create_new_company, create_new_account, clean_master_plan, upload_master_plan
+#from apps.masterplan.models import MasterPlan
+from sql_app.models import MasterPlan
+from apps.dbManager import  create_new_account, clean_master_plan, upload_master_plan
+from apps.organizations.util import get_json_data
 
+from fastapi import FastAPI
+from starlette.responses import HTMLResponse
+from starlette.requests import Request
+from starlette.templating import Jinja2Templates 
+from starlette.middleware.wsgi import WSGIMiddleware
 
-@blueprint.route('/')
-def route_default():
-    print('Here')
-    return redirect(url_for('organizations_blueprint.allcompanies'))
-
+API_GET = "GET"
+API_POST = "POST"
+API_PUT = "PUT"
+#ALL_PARMS = "?skip=0&limit=100"
 
 # Accounts
+#@blueprint.route('/masterplan', methods=['GET'])
+# def get_masterplan():
+#    print('----------------------- ### Master Plan route ####  ----------------')
+#    json_data = {}
+#    page = request.args.get('page', 1, type=int)
+#    response = get_json_data(API_GET, request.path, ALL_PARMS, json_data)
+#    print("en el ")
+#    if response :
+#        print("estoy en el if response ")
+#        return render_template('masterplan/masterplan.html', pagination=response, page = page)
 
-@blueprint.route('/masterplan', methods=['GET'])
-def masterplan():
-    print('----------------------- ### Master Plan route ####  ----------------')
+@blueprint.route('/masterplans', methods=['GET'])
+def masterplan_2():
+    print('----------------------- ### Master Plan 2 route ####  ----------------')
     #print("page nbr :", page_nbr, type(int(page_nbr)))
     #page_nbr= int(page_nbr)
+
+    # NEW
+    json_data = {}
+    limit = 20
     page = request.args.get('page', 1, type=int)
-    pagination = MasterPlan.get_all(page)
+    response = get_json_data(API_GET, request.path, page, limit, json_data)
+    print("en el -- page", page)
+    if response :
+        print("estoy en el if response ", response)
+        return render_template('masterplan/masterplan.html', pagination=response, page = page)
+    
+    # end NEW
+    #--------
+    # OLD
+    # page = request.args.get('page', 1, type=int)
+    # pagination = MasterPlan.get_all(page)
 
     # Check the password
-    if pagination :
-        return render_template('masterplan/masterplan.html', pagination=pagination, page = page)
-
+    #if pagination :
+    #    return render_template('masterplan/masterplan.html', pagination=pagination, page = page)
+    # OLD
 
 @blueprint.route('/addaccount', methods=['GET', 'POST'])
 def addaccount():

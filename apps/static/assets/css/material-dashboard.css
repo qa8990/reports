@@ -16048,7 +16048,7 @@ a {
   line-height: 1.5; }
 
 .text-xs {
-  line-height: 1.25;
+  line-height: 1.5;
   max-width: 1000px;
   overflow: hidden;
   white-space: nowrap;
@@ -16070,7 +16070,7 @@ p, .p {
   font-size: 0.875rem !important; }
 
 .text-xs {
-  font-size: 0.75rem !important; }
+  font-size: 0.875rem !important; }
 
 .text-xxs {
   font-size: 0.65rem !important; }
