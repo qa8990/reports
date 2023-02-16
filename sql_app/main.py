@@ -1,10 +1,11 @@
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi_pagination import Page, paginate, LimitOffsetPage, add_pagination, Params
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, query
 
 from . import crud, models, schemas
 from .database import SessionLocal, engine
 from typing import List
+import datetime
 
 
 api = FastAPI()
@@ -92,9 +93,10 @@ async def update_company(company_id: int, company: schemas.CompanyCreate,  db: S
     return db_company
 
 @api.get("/api/v1/masterplans/", response_model=Page[schemas.MasterPlan], tags=["Master Plan"])
-async def read_masterplan(skip: int , limit: int = 20, db: Session = Depends(get_db)):
+async def read_masterplan(skip: int , limit: int, db: Session = Depends(get_db)):
     print(" AJA Y ANDEN ???? what")
     params = Params(size=limit, page=skip)
+    print("[ main - STEP 003 ]", datetime.datetime.now(), "skip:",skip, "limit:",limit)
     accounts = crud.get_master_plan(db, skip=skip, limit=limit)
     print(accounts, "MASTER PLAN")
     print(type(accounts))

@@ -35,10 +35,12 @@ def get_json_data(apiMethod, path, skip, limit, json_data):
     #    url = '{0}{1}/{2}'.format(API_URL, path, params)
     #    print("URL API 2 > :", url, apiMethod, headers, payload)
     if  skip == None: 
+        print("[ util - STEP 001 ]", datetime.now())
         url = '{0}{1}/'.format(API_URL, path)
         print("URL API 1> :", url)
         response = requests.request(apiMethod, url, headers=headers, data=payload)
     else:
+        print("[ util - STEP 002 ]", datetime.now())
         url = '{0}{1}/'.format(API_URL, path)
         print("URL API 2 > :", url, apiMethod, headers, payload, params)
         response = requests.request(apiMethod, url, params=params, data=payload, headers=headers,)

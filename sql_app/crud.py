@@ -3,6 +3,7 @@ from sqlalchemy import func, select, update
 from fastapi_pagination import LimitOffsetPage, add_pagination, paginate
 
 from . import models, schemas
+import datetime
 
 
 def get_user(db: Session, user_id: int):
@@ -89,5 +90,7 @@ def get_master_plan(db: Session, skip: int, limit: int ):
     #accounts = db.query(models.MasterPlan).offset(skip).limit(limit).all()
     #accounts = db.query(models.MasterPlan).all()
     #print("ACCOUNT ----->>> ",accounts)
+    print("[ crud - STEP 004 ]", datetime.datetime.now(), "skip:",skip, "limit:",limit)
     return db.query(models.MasterPlan).all()
+#
 #db.query(models.MasterPlan).offset(skip).limit(limit).all()

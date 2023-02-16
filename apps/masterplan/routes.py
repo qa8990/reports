@@ -1,4 +1,5 @@
 from flask import render_template, redirect, request, url_for
+from flask_sqlalchemy import Pagination
 from flask_modals import render_template_modal, response
 from apps.masterplan import blueprint
 from apps import db, props, sql_scripts
@@ -8,6 +9,7 @@ from apps.masterplan.forms import MasterPlanForm
 from sql_app.models import MasterPlan
 from apps.dbManager import  create_new_account, clean_master_plan, upload_master_plan
 from apps.organizations.util import get_json_data
+import datetime
 
 from fastapi import FastAPI
 from starlette.responses import HTMLResponse
@@ -40,13 +42,18 @@ def masterplan_2():
 
     # NEW
     json_data = {}
-    limit = 20
+    limit = 10
     page = request.args.get('page', 1, type=int)
     response = get_json_data(API_GET, request.path, page, limit, json_data)
     print("en el -- page", page)
     if response :
-        print("estoy en el if response ", response)
-        return render_template('masterplan/masterplan.html', pagination=response, page = page)
+
+        myList = response['items']
+        totalList = response['total']
+        print("estoy en el if response -- MyList ", myList, type(myList))
+        pagination = Pagination( None, page=page, per_page=10, total=totalList, items=myList)
+        print("PAGINATION @@@@@ ", pagination)
+        return render_template('masterplan/masterplan.html', pagination=pagination, page=page, total=totalList)
     
     # end NEW
     #--------

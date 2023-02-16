@@ -36,6 +36,7 @@ def get_all_companies():
 
     response = get_json_data(API_GET, request.path, skip, limit, json_data)
     if response :
+        print("estoy en el if response ", response, type(response))
         return render_template('organizations/companies.html', company=response)
 
 
