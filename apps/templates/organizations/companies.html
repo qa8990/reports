@@ -46,9 +46,43 @@
                     <th class="text-secondary opacity-7"></th>
                   </tr>
                 </thead>
+                <!-- Pagination 2-->
+                <nav aria-label="Page navigation example">
+                  <div class="pagination">
+                    {% if pagination.has_prev %}
+                    
+                      <span class="page-item pagination text-xs">
+                        <a class='page-link' href="{{ url_for('organizations_blueprint.get_all_companies', page=pagination.prev_num) }}">
+                          {{ '<<<' }} </a>
+                      </span>
+                      {% endif %}
                 
+                      {% for number in pagination.iter_pages() %}
+                      {% if pagination.page != number %}
+                      <span class="page-item pagination text-xs">
+                        <a class='page-link' href="{{ url_for('organizations_blueprint.get_all_companies', page=number) }}">
+                          {{ number }}
+                        </a>
+                      </span>
+                      {% else %}
+                        <ul class="page-item pagination text-xs"><span class='page-link'>{{ number }}</span></ul>
+                      {% endif %}
+                      {% endfor %}
+                
+                      {% if pagination.has_next %}
+                      <span class="page-item pagination text-xs">
+                        
+                        <a class='page-link' href="{{ url_for('organizations_blueprint.get_all_companies', page=pagination.next_num) }}">
+                          {{ '>>>' }}
+                        </a>
+                      </span>
+                      {% endif %}
+                    
+                  </div>
+                </nav>
+                <!-- end pag 2-->
                 <tbody>
-                  {% for items in company %}
+                  {% for items in pagination.items %}
                  
                     <tr>
                       <td>

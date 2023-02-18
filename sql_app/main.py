@@ -66,10 +66,11 @@ async def read_last_company_added(db: Session = Depends(get_db)):
     #print("LAST COMPANY", last_company)
     return last_company
 
-@api.get("/api/v1/companies/", response_model=List[schemas.Companies], tags=["Companies"])
-async def read_companies(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+@api.get("/api/v1/companies/", response_model=Page[schemas.Companies], tags=["Companies"])
+async def read_companies(skip: int, limit: int, db: Session = Depends(get_db)):
+    params = Params(size=limit, page=skip)
     company = crud.get_companies(db, skip=skip, limit=limit)
-    return company
+    return paginate(company, params)
 
 @api.get("/api/v1/company/{companyId}/", response_model=schemas.Companies, tags=["Companies"])
 def get_company_byId(companyId: int, db: Session = Depends(get_db)):
@@ -84,8 +85,8 @@ async def create_company(company: schemas.CompanyCreate, db: Session = Depends(g
     print("Creando datos de compania", company)
     return crud.add_company(db=db, company=company)
 
-@api.put("/api/v1/company/{company_id}/", response_model=schemas.CompanyCreate, tags=["Companies"])
-async def update_company(company_id: int, company: schemas.CompanyCreate,  db: Session = Depends(get_db)):
+@api.put("/api/v1/company/{company_id}/", response_model=schemas.CompanyUpdate, tags=["Companies"])
+async def update_company(company_id: int, company: schemas.CompanyUpdate,  db: Session = Depends(get_db)):
     db_company = crud.upd_company(db, company_id, company)
     print(" Estoy en el PUT v1/company")
     print(type(db_company))
@@ -94,10 +95,10 @@ async def update_company(company_id: int, company: schemas.CompanyCreate,  db: S
 
 @api.get("/api/v1/masterplans/", response_model=Page[schemas.MasterPlan], tags=["Master Plan"])
 async def read_masterplan(skip: int , limit: int, db: Session = Depends(get_db)):
-    print(" AJA Y ANDEN ???? what")
+
     params = Params(size=limit, page=skip)
     print("[ main - STEP 003 ]", datetime.datetime.now(), "skip:",skip, "limit:",limit)
     accounts = crud.get_master_plan(db, skip=skip, limit=limit)
     print(accounts, "MASTER PLAN")
-    print(type(accounts))
+
     return paginate(accounts, params)

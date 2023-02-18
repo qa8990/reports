@@ -3,8 +3,10 @@ from sqlalchemy import func, select, update
 from fastapi_pagination import LimitOffsetPage, add_pagination, paginate
 
 from . import models, schemas
+from apps.organizations.util import get_current_date_time
 import datetime
 
+ACTIVE = 1
 
 def get_user(db: Session, user_id: int):
     print("el email es ", user_id)
@@ -34,7 +36,8 @@ def get_status(db: Session, skip: int = 0, limit: int = 100):
 # -- Companies --
 # Get all companies
 def get_companies(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Companies).offset(skip).limit(limit).all()
+    return db.query(models.Companies).all()
+#db.query(models.Companies).offset(skip).limit(limit).all()
 
 # Get company by id
 def get_company(db: Session, company_id: int):
@@ -53,7 +56,11 @@ def get_last_company_added(db: Session):
     return db.query(models.Companies).filter(models.Companies.created_at == max_date).first()
 
 def add_company(db: Session, company: schemas.CompanyCreate):
-    company_data = models.Companies(company_id = company.company_id, name = company.name, description = company.description, code = company.code, company_type_id = company.company_type_id)
+    current_date = get_current_date_time()
+    #print("estoy en el ADD COMPANY -- POST ", current_date, ACTIVE)
+    #company_data = models.Companies(company_id = company.company_id, name = company.name, description = company.description, code = company.code, company_type_id = company.company_type_id, created_at = current_date, status_id = ACTIVE)
+    company_data = models.Companies(name = company.name, description = company.description, code = company.code, company_type_id = company.company_type_id, created_at = current_date, status_id = ACTIVE)
+    print("estoy en el ADD COMPANY -- POST ", current_date, ACTIVE, company_data)
     db.add(company_data)
     db.commit()
     return company_data

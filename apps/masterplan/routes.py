@@ -20,51 +20,21 @@ from starlette.middleware.wsgi import WSGIMiddleware
 API_GET = "GET"
 API_POST = "POST"
 API_PUT = "PUT"
-#ALL_PARMS = "?skip=0&limit=100"
 
-# Accounts
-#@blueprint.route('/masterplan', methods=['GET'])
-# def get_masterplan():
-#    print('----------------------- ### Master Plan route ####  ----------------')
-#    json_data = {}
-#    page = request.args.get('page', 1, type=int)
-#    response = get_json_data(API_GET, request.path, ALL_PARMS, json_data)
-#    print("en el ")
-#    if response :
-#        print("estoy en el if response ")
-#        return render_template('masterplan/masterplan.html', pagination=response, page = page)
 
 @blueprint.route('/masterplans', methods=['GET'])
 def masterplan_2():
-    print('----------------------- ### Master Plan 2 route ####  ----------------')
-    #print("page nbr :", page_nbr, type(int(page_nbr)))
-    #page_nbr= int(page_nbr)
-
-    # NEW
     json_data = {}
     limit = 10
     page = request.args.get('page', 1, type=int)
     response = get_json_data(API_GET, request.path, page, limit, json_data)
-    print("en el -- page", page)
-    if response :
 
+    if response :
         myList = response['items']
         totalList = response['total']
-        print("estoy en el if response -- MyList ", myList, type(myList))
         pagination = Pagination( None, page=page, per_page=10, total=totalList, items=myList)
-        print("PAGINATION @@@@@ ", pagination)
         return render_template('masterplan/masterplan.html', pagination=pagination, page=page, total=totalList)
     
-    # end NEW
-    #--------
-    # OLD
-    # page = request.args.get('page', 1, type=int)
-    # pagination = MasterPlan.get_all(page)
-
-    # Check the password
-    #if pagination :
-    #    return render_template('masterplan/masterplan.html', pagination=pagination, page = page)
-    # OLD
 
 @blueprint.route('/addaccount', methods=['GET', 'POST'])
 def addaccount():
@@ -99,8 +69,8 @@ def viewplan():
     # Check the password
     return  redirect(url_for('masterplan_blueprint.masterplan'))    
 
-@blueprint.route('/editaccounting/<id>', methods=['GET', 'POST'])    
-def editaccounting(id):
+@blueprint.route('/account/<id>', methods=['GET', 'POST'])    
+def edit_account(id):
     form = MasterPlanForm()
     if request.method == 'GET':
         plan = MasterPlan.get_account_byId(id)

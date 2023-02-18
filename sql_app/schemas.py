@@ -48,13 +48,14 @@ class CompanyTypes(CompanyTypeBase):
         orm_mode = True
 
 class CompanyBase(BaseModel):
-    company_id: int
+    #company_id: int
     name: str
     description: str
     company_type_id: int
 
 class Companies(CompanyBase):
-    code: str
+    company_id: int
+    code: int
     name: str
     description: str
     created_at: str
@@ -65,11 +66,25 @@ class Companies(CompanyBase):
         orm_mode = True
 
 class CompanyCreate(CompanyBase):
-    code: str
+    name: str
+    description: str
+    code: int
+    created_at: str
+    status_id: int
+    company_type_id: int
 
     class Config:
         orm_mode = True
-        
+
+class CompanyUpdate(CompanyBase):
+    name: str
+    description: str
+    code: int
+    company_type_id: int
+
+    class Config:
+        orm_mode = True
+
 class MasterPlanBase(BaseModel):
     id: int
 

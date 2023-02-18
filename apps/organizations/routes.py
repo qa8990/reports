@@ -3,12 +3,14 @@ from flask_modals import render_template_modal, response
 from apps.organizations import blueprint
 from apps import db, props, sql_scripts
 from sqlalchemy import select
+from flask_sqlalchemy import Pagination
 from apps.organizations.forms import CreateOrganizationForm, OrganizationForm
 #from apps.organizations.models import Companies, CompaniesTypes
 from sql_app.models import Companies, CompanyTypes
 from apps.dbManager import create_new_company
 
 from pathlib import Path
+from sql_app.config import settings
 
 from apps import create_app
 from fastapi import FastAPI
@@ -17,7 +19,7 @@ from starlette.requests import Request
 from starlette.templating import Jinja2Templates 
 from starlette.middleware.wsgi import WSGIMiddleware
 
-from apps.organizations.util import get_current_date_time, get_json_data, format_json_object
+from apps.organizations.util import get_current_date_time, get_json_data, format_json_object, format_json_object2
 
 ACTIVO = 1
 
@@ -30,21 +32,43 @@ skip = '1'
 limit = '20'
 # Organization
 
+@blueprint.route('/companies2', methods=['GET'])
+def get_all_companies2():
+    json_data = {}
+    print("PATH ====>>>> ", request.path)
+    limit = 10
+    page = request.args.get('page', 1, type=int)
+    response = get_json_data(API_GET, request.path, page, limit, json_data)
+    if response :
+        myList = response['items']
+        totalList = response['total']
+        print("estoy en el if response ", myList, type(myList))
+        pagination = Pagination( None, page=page, per_page=10, total=totalList, items=myList)
+        return render_template('organizations/companies.html', pagination=pagination, page=page, total=totalList)
+
 @blueprint.route('/companies', methods=['GET'])
 def get_all_companies():
     json_data = {}
-
-    response = get_json_data(API_GET, request.path, skip, limit, json_data)
+    ruta= "/companies"
+    print("PATH ====>>>> ", request.path)
+    limit = 10
+    page = request.args.get('page', 1, type=int)
+    response = get_json_data(API_GET, ruta, page, limit, json_data)
     if response :
-        print("estoy en el if response ", response, type(response))
-        return render_template('organizations/companies.html', company=response)
+        print(response)
+        myList = response['items']
+        totalList = response['total']
+        print("estoy en el if response ", myList, type(myList))
+        pagination = Pagination( None, page=page, per_page=10, total=totalList, items=myList)
+        return render_template('organizations/companies.html', pagination=pagination, page=page, total=totalList)
 
-
-@blueprint.route('/company/<id>', methods=['GET', 'POST'])
+# @blueprint.route('/company/<id>', methods=['GET', 'POST'])
+@blueprint.route('/company/<id>', methods=['GET'])
 def get_company_by_id(id):
-
+    print("estoy en get_company_by_id")
+    print("PATH ====>>>> get post ", request.path)
     json_data = {}
-    response = get_json_data(API_GET, request.path, None, json_data)
+    response = get_json_data(API_GET, request.path, None, None, json_data)
     form = OrganizationForm()
     form.name.data = response['name']
     form.description.data = response['description']
@@ -54,27 +78,33 @@ def get_company_by_id(id):
     form.company_type_id.choices = [(g['company_type_id'], g['description']) for g in companyTypes]
 
     if request.method == 'GET':
+        print("/company/<id> estoy en GET METHOD")
         return render_template('organizations/organization.html', company=response, form=form) 
     if form.is_submitted and request.method == 'POST':
+        print("/company/<id> estoy en POST METHOD")
         json_data = request.form.to_dict()
         json_data = format_json_object(json_data, id)
         response = get_json_data(API_PUT, request.path, None, None, json_data)
         return redirect(url_for('organizations_blueprint.get_all_companies'))
         
 
-@blueprint.route('/company/<id>', methods=['PUT'])
+@blueprint.route('/company/<id>', methods=['GET','POST'])
 def edit_company_by_id(id):
     json_data = {}
+    print("PATH ====>>>> ", request.path)
+    json_data = request.form.to_dict()
+    json_data = format_json_object2(json_data, id)
     response = get_json_data(API_PUT, request.path, None, None, json_data)
-    print("RESPONSE 2 <><><><>", type(response))
+    print("RESPONSE 2 <><><><>", response)
     if response :
-        return render_template('organizations/companies.html', company=response)
+        return redirect(url_for('organizations_blueprint.get_all_companies'))
     
 
 @blueprint.route('/edit_company/<id>', methods=['GET', 'POST'])
 def edit_company(id):
 
     print('En el EDIT_COMPANY')
+    print("PATH ====>>>> ", request.path)
     form = OrganizationForm(request.form)
     company_obj = Companies()
    
@@ -96,6 +126,7 @@ def edit_company(id):
 @blueprint.route('/edit_company2/<id>', methods=['GET', 'POST'])    
 def edit_company22(id):
     form = OrganizationForm()
+    print("PATH ====>>>> ", request.path)
     if request.method == 'GET':
         company = Companies.get_company_byId(id)
         companyTypes = CompanyTypes.get_all_company_types()
@@ -116,13 +147,16 @@ def add_company():
     form = CreateOrganizationForm(request.form)
     companyTypes = get_json_data(API_GET, "/company-types", None, None, json_data)
     form.company_type_id.choices = [(g['company_type_id'], g['description']) for g in companyTypes]
+    form.created_at.data = get_current_date_time()
+    form.status_id.data = ACTIVO
 
+    print("FORM", form.data, "METHOD ", request.method)
     if request.method == 'GET':
         return render_template('organizations/organization.html', form=form) 
     if form.is_submitted and request.method == 'POST':
         json_data = request.form.to_dict()
         json_data = format_json_object(json_data, None)
-        print(json_data)
+        print("organizations.routes.py\> En el if response de POST>>> ",json_data)
         response = get_json_data(API_POST, request.path, None, None, json_data)
         return redirect(url_for('organizations_blueprint.get_all_companies'))
 
